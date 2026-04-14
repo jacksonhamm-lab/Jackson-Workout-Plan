@@ -103,6 +103,7 @@
   .nav-tab.active-full { background: var(--full-dim); border-color: var(--full); color: var(--full); }
   .nav-tab.active-tracker { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
   .nav-tab.active-rest { background: #4a4a5a22; border-color: var(--rest); color: #aaa; }
+  .nav-tab.active-nutrition { background: #9e4e2e18; border-color: #e07040; color: #e07040; }
 
   /* VIEWS */
   .view { display: none; padding: 0 20px 100px; animation: fadeUp 0.3s ease; }
@@ -255,6 +256,208 @@
     cursor: pointer;
     margin-top: 16px;
   }
+
+  /* NUTRITION */
+  --nutrition: #e07040;
+  --nutrition-dim: #e0704018;
+
+  /* MEAL CARD */
+  .meal-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .meal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .meal-header-left { display: flex; align-items: center; gap: 12px; }
+  .meal-emoji { font-size: 22px; }
+  .meal-time {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #e07040;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .meal-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .meal-body { display: none; padding: 0 18px 16px; }
+  .meal-card.open .meal-body { display: block; }
+  .meal-card.open .chevron { transform: rotate(180deg); }
+
+  .meal-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .meal-item:last-child { border-bottom: none; }
+  .meal-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #e07040;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+  .meal-item-text { flex: 1; }
+  .meal-item-name { font-weight: 500; }
+  .meal-item-note { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* WATER TRACKER */
+  .water-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 10px;
+  }
+  .water-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--abs);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .water-glasses {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .glass-btn {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    background: var(--surface2);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .glass-btn.filled {
+    background: #4a9eff22;
+    border-color: var(--abs);
+  }
+  .water-count {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .water-count span { color: var(--abs); font-size: 20px; }
+
+  /* CHEAT TRACKER */
+  .cheat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 10px;
+  }
+  .cheat-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--push);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .cheat-sub { font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+  .cheat-circles {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .cheat-circle {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: var(--surface2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .cheat-circle.used {
+    background: #e85d2622;
+    border-color: var(--push);
+  }
+  .cheat-status { font-size: 12px; color: var(--muted); }
+  .cheat-status.ok { color: var(--full); }
+  .cheat-status.maxed { color: var(--push); }
+
+  /* PROTEIN TABLE */
+  .protein-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 10px;
+  }
+  .protein-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--full);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .protein-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .protein-row:last-child { border-bottom: none; }
+  .protein-food { color: var(--text); font-weight: 500; flex: 1; }
+  .protein-serving { color: var(--muted); font-size: 11px; flex: 1; text-align: center; }
+  .protein-amount {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    color: var(--full);
+    font-weight: 600;
+    text-align: right;
+    min-width: 44px;
+  }
+  .protein-header-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* NUTRITION VIEW HEADER */
+  .nutrition-view-header {
+    padding: 8px 0 16px;
+  }
+  .nutrition-view-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .nutrition-view-sub { font-size: 12px; color: var(--muted); }
 
   /* TRACKER VIEW */
   .tracker-header {
@@ -479,7 +682,7 @@
   .bnav-btn.active { color: var(--text); background: var(--surface2); }
   .bnav-btn.active-push-btn { color: var(--push); }
   .bnav-btn.active-full-btn { color: var(--full); }
-  .bnav-btn.active-gold-btn { color: var(--gold); }
+  .bnav-btn.active-nutrition-btn { color: #e07040; }
 </style>
 </head>
 <body>
@@ -494,6 +697,7 @@
   <div class="nav-tab" onclick="showView('push')">Push Days</div>
   <div class="nav-tab" onclick="showView('full')">Full Upper</div>
   <div class="nav-tab" onclick="showView('tracker')">Tracker</div>
+  <div class="nav-tab" onclick="showView('nutrition')">Nutrition</div>
   <div class="nav-tab" onclick="showView('rest')">Rest Day</div>
 </div>
 
@@ -771,6 +975,134 @@
   </div>
 </div>
 
+<!-- ══════════════════════ NUTRITION VIEW ══════════════════════ -->
+<div class="view" id="view-nutrition">
+  <div class="nutrition-view-header">
+    <div class="nutrition-view-title">Daily Nutrition</div>
+    <div class="nutrition-view-sub">Hit protein every meal. Everything else follows.</div>
+  </div>
+
+  <!-- WATER TRACKER -->
+  <div class="water-card">
+    <div class="water-title">💧 Water Today</div>
+    <div class="water-glasses" id="waterGlasses"></div>
+    <div class="water-count">
+      <span id="waterCount">0</span> / 8 glasses &nbsp;·&nbsp; target 2–3L
+    </div>
+  </div>
+
+  <!-- CHEAT MEAL TRACKER -->
+  <div class="cheat-card">
+    <div class="cheat-title">🍕 Cheat Meals This Week</div>
+    <div class="cheat-sub">2 per week is totally fine. Don't let it become 2 per day.</div>
+    <div class="cheat-circles" id="cheatCircles"></div>
+    <div class="cheat-status" id="cheatStatus"></div>
+    <button class="reset-btn" style="margin-top:10px;" onclick="resetCheats()">↺ Reset Week</button>
+  </div>
+
+  <!-- MEALS -->
+  <div style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;padding:6px 0 10px;">— Daily Meal Template</div>
+
+  <div class="meal-card" id="meal-morning">
+    <div class="meal-header" onclick="toggleMeal('morning')">
+      <div class="meal-header-left">
+        <div class="meal-emoji">🍳</div>
+        <div>
+          <div class="meal-time">Morning</div>
+          <div class="meal-name">Breakfast</div>
+        </div>
+      </div>
+      <div class="chevron">⌄</div>
+    </div>
+    <div class="meal-body">
+      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">3 egg + mozza omelet</div><div class="meal-item-note">Throw spinach in if you can. ~24g protein.</div></div></div>
+      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Plain skyr</div><div class="meal-item-note">Side or after. Add berries if you have them. ~17g protein.</div></div></div>
+    </div>
+  </div>
+
+  <div class="meal-card" id="meal-lunch">
+    <div class="meal-header" onclick="toggleMeal('lunch')">
+      <div class="meal-header-left">
+        <div class="meal-emoji">🐟</div>
+        <div>
+          <div class="meal-time">Mid-Day</div>
+          <div class="meal-name">Lunch</div>
+        </div>
+      </div>
+      <div class="chevron">⌄</div>
+    </div>
+    <div class="meal-body">
+      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Canned tuna or smoked salmon</div><div class="meal-item-note">With crackers or on toast. ~25g protein.</div></div></div>
+      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Or second skyr</div><div class="meal-item-note">Fine on lighter days — keep the protein up.</div></div></div>
+    </div>
+  </div>
+
+  <div class="meal-card" id="meal-dinner">
+    <div class="meal-header" onclick="toggleMeal('dinner')">
+      <div class="meal-header-left">
+        <div class="meal-emoji">🍽️</div>
+        <div>
+          <div class="meal-time">Evening</div>
+          <div class="meal-name">Dinner</div>
+        </div>
+      </div>
+      <div class="chevron">⌄</div>
+    </div>
+    <div class="meal-body">
+      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Fresh Prep meal</div><div class="meal-item-note">You're good here. Make sure there's a protein source in it. ~25–35g protein.</div></div></div>
+    </div>
+  </div>
+
+  <div class="meal-card" id="meal-snack">
+    <div class="meal-header" onclick="toggleMeal('snack')">
+      <div class="meal-header-left">
+        <div class="meal-emoji">🧀</div>
+        <div>
+          <div class="meal-time">Night Snack — Rotate</div>
+          <div class="meal-name">Before Bed</div>
+        </div>
+      </div>
+      <div class="chevron">⌄</div>
+    </div>
+    <div class="meal-body">
+      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Smoked salmon + Balderson cheddar</div><div class="meal-item-note">Protein + fat. Ideal before bed.</div></div></div>
+      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Cheddar + hard boiled egg</div><div class="meal-item-note">Simple, filling, high protein.</div></div></div>
+      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Skyr with honey</div><div class="meal-item-note">Slow-digesting casein. Great for overnight muscle repair.</div></div></div>
+      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Sausage + cheddar</div><div class="meal-item-note">Keep to 3–4 nights a week rather than every night (sodium).</div></div></div>
+    </div>
+  </div>
+
+  <!-- PROTEIN QUICK REF -->
+  <div class="protein-card">
+    <div class="protein-title">💪 Protein Quick Ref</div>
+    <div class="protein-header-row">
+      <span style="flex:1;">Food</span>
+      <span style="flex:1;text-align:center;">Serving</span>
+      <span style="min-width:44px;text-align:right;">Protein</span>
+    </div>
+    <div class="protein-row"><span class="protein-food">Egg + mozza omelet</span><span class="protein-serving">3 eggs</span><span class="protein-amount">~24g</span></div>
+    <div class="protein-row"><span class="protein-food">Plain skyr</span><span class="protein-serving">3/4 cup</span><span class="protein-amount">~17g</span></div>
+    <div class="protein-row"><span class="protein-food">Canned tuna/salmon</span><span class="protein-serving">1 can</span><span class="protein-amount">~25g</span></div>
+    <div class="protein-row"><span class="protein-food">Smoked salmon</span><span class="protein-serving">75g</span><span class="protein-amount">~15g</span></div>
+    <div class="protein-row"><span class="protein-food">Balderson cheddar</span><span class="protein-serving">2 slices</span><span class="protein-amount">~10g</span></div>
+    <div class="protein-row"><span class="protein-food">Fresh Prep meal</span><span class="protein-serving">1 meal</span><span class="protein-amount">~30g</span></div>
+    <div class="protein-row"><span class="protein-food">Pork sausage (dry)</span><span class="protein-serving">2 pieces</span><span class="protein-amount">~12g</span></div>
+    <div class="protein-row"><span class="protein-food">Chia pudding (skyr)</span><span class="protein-serving">1 bowl</span><span class="protein-amount">~18g</span></div>
+    <div class="protein-row"><span class="protein-food">Pumpkin seeds</span><span class="protein-serving">1/4 cup</span><span class="protein-amount">~9g</span></div>
+    <div class="protein-row"><span class="protein-food">Steel cut oatmeal</span><span class="protein-serving">1 cup cooked</span><span class="protein-amount">~6g</span></div>
+  </div>
+
+  <!-- RULES -->
+  <div class="water-card" style="margin-bottom:10px;">
+    <div class="water-title" style="color:var(--gold);">⚡ The Rules</div>
+    <div class="meal-item" style="padding:8px 0;border-bottom:1px solid var(--border);"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">Hit protein every meal</div><div class="meal-item-note">Target 0.7–1g per lb of bodyweight daily</div></div></div>
+    <div class="meal-item" style="padding:8px 0;border-bottom:1px solid var(--border);"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">Don't skip the night snack</div><div class="meal-item-note">Casein before bed = muscle repair while you sleep</div></div></div>
+    <div class="meal-item" style="padding:8px 0;border-bottom:1px solid var(--border);"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">Cheat meals not cheat days</div><div class="meal-item-note">2 per week is built in. Don't snowball.</div></div></div>
+    <div class="meal-item" style="padding:8px 0;"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">Eat enough total calories</div><div class="meal-item-note">Under-eating fights muscle growth. Don't fear food.</div></div></div>
+  </div>
+
+</div>
+
 <!-- ══════════════════════ REST VIEW ══════════════════════ -->
 <div class="view" id="view-rest">
   <div class="rest-view">
@@ -802,6 +1134,10 @@
     <span class="icon">📈</span>
     <span class="label">Tracker</span>
   </button>
+  <button class="bnav-btn" id="bnav-nutrition" onclick="showView('nutrition')">
+    <span class="icon">🥗</span>
+    <span class="label">Food</span>
+  </button>
   <button class="bnav-btn" id="bnav-rest" onclick="showView('rest')">
     <span class="icon">🌙</span>
     <span class="label">Rest</span>
@@ -812,6 +1148,8 @@
 // ── State ──
 const STORAGE_KEY = 'workout_state_v1';
 const REPS_KEY = 'pushup_log_v1';
+const WATER_KEY = 'water_v1';
+const CHEAT_KEY = 'cheat_v1';
 
 function getState() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
@@ -821,20 +1159,53 @@ function getReps() {
   try { return JSON.parse(localStorage.getItem(REPS_KEY)) || []; } catch { return []; }
 }
 function saveReps(r) { localStorage.setItem(REPS_KEY, JSON.stringify(r)); }
+function getWater() {
+  try {
+    const d = JSON.parse(localStorage.getItem(WATER_KEY)) || {};
+    const today = new Date().toDateString();
+    if(d.date !== today) return 0;
+    return d.count || 0;
+  } catch { return 0; }
+}
+function saveWater(n) {
+  localStorage.setItem(WATER_KEY, JSON.stringify({ date: new Date().toDateString(), count: n }));
+}
+function getCheat() {
+  try {
+    const d = JSON.parse(localStorage.getItem(CHEAT_KEY)) || {};
+    const week = getWeekKey();
+    if(d.week !== week) return 0;
+    return d.count || 0;
+  } catch { return 0; }
+}
+function saveCheat(n) {
+  localStorage.setItem(CHEAT_KEY, JSON.stringify({ week: getWeekKey(), count: n }));
+}
+function getWeekKey() {
+  const d = new Date();
+  const jan1 = new Date(d.getFullYear(),0,1);
+  const wk = Math.ceil(((d-jan1)/86400000 + jan1.getDay()+1)/7);
+  return `${d.getFullYear()}-W${wk}`;
+}
 
 // ── View switching ──
-const views = ['push','full','tracker','rest'];
+const views = ['push','full','tracker','nutrition','rest'];
 function showView(v) {
   views.forEach(id => {
     document.getElementById('view-'+id).classList.toggle('active', id===v);
     const btn = document.getElementById('bnav-'+id);
-    btn.classList.remove('active','active-push-btn','active-full-btn','active-gold-btn');
+    if(btn) btn.classList.remove('active','active-push-btn','active-full-btn','active-gold-btn','active-nutrition-btn');
   });
   const btn = document.getElementById('bnav-'+v);
-  btn.classList.add('active');
-  if(v==='push') btn.classList.add('active-push-btn');
-  if(v==='full') btn.classList.add('active-full-btn');
-  if(v==='tracker') { btn.classList.add('active-gold-btn'); renderTracker(); }
+  if(btn) {
+    btn.classList.add('active');
+    if(v==='push') btn.classList.add('active-push-btn');
+    if(v==='full') btn.classList.add('active-full-btn');
+    if(v==='tracker') btn.classList.add('active-gold-btn');
+    if(v==='nutrition') btn.classList.add('active-nutrition-btn');
+  }
+  if(v==='tracker') renderTracker();
+  if(v==='nutrition') renderNutrition();
 
   // update top nav
   document.querySelectorAll('.nav-tab').forEach((t,i) => {
@@ -843,6 +1214,7 @@ function showView(v) {
       if(v==='push') t.classList.add('active-push');
       else if(v==='full') t.classList.add('active-full');
       else if(v==='tracker') t.classList.add('active-tracker');
+      else if(v==='nutrition') t.classList.add('active-nutrition');
       else t.classList.add('active-rest');
     }
   });
@@ -995,6 +1367,61 @@ function renderTracker() {
     `;
     histEl.appendChild(row);
   });
+}
+
+// ── Meal toggle ──
+function toggleMeal(id) {
+  document.getElementById('meal-'+id).classList.toggle('open');
+}
+
+// ── Nutrition render ──
+function renderNutrition() {
+  renderWater();
+  renderCheat();
+}
+
+function renderWater() {
+  const count = getWater();
+  const container = document.getElementById('waterGlasses');
+  container.innerHTML = '';
+  for(let i=0;i<8;i++) {
+    const btn = document.createElement('button');
+    btn.className = 'glass-btn' + (i < count ? ' filled' : '');
+    btn.textContent = '💧';
+    btn.onclick = () => {
+      const cur = getWater();
+      saveWater(i < cur ? i : i+1);
+      renderWater();
+    };
+    container.appendChild(btn);
+  }
+  document.getElementById('waterCount').textContent = count;
+}
+
+function renderCheat() {
+  const count = getCheat();
+  const container = document.getElementById('cheatCircles');
+  container.innerHTML = '';
+  for(let i=0;i<2;i++) {
+    const c = document.createElement('div');
+    c.className = 'cheat-circle' + (i < count ? ' used' : '');
+    c.textContent = i < count ? '🍕' : '○';
+    c.onclick = () => {
+      const cur = getCheat();
+      saveCheat(i < cur ? i : i+1);
+      renderCheat();
+    };
+    container.appendChild(c);
+  }
+  const status = document.getElementById('cheatStatus');
+  if(count === 0) { status.textContent = '✓ No cheats yet this week — you\'re golden'; status.className='cheat-status ok'; }
+  else if(count === 1) { status.textContent = '1 used — 1 left. No stress.'; status.className='cheat-status ok'; }
+  else { status.textContent = 'Both used. Back on plan now.'; status.className='cheat-status maxed'; }
+}
+
+function resetCheats() {
+  saveCheat(0);
+  renderCheat();
 }
 
 // ── Init ──
