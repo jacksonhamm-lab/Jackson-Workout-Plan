@@ -688,247 +688,179 @@
 <body>
 
 <div class="header">
-  <div class="header-label">6-Day Calisthenics</div>
+  <div class="header-label">5-Day Calisthenics</div>
   <div class="header-title">THE <span>PROGRAM</span></div>
   <div class="header-sub">Lean · Athletic · No Gym Required</div>
 </div>
 
 <div class="nav" id="topNav">
-  <div class="nav-tab" onclick="showView('push')">Push Days</div>
-  <div class="nav-tab" onclick="showView('full')">Full Upper</div>
+  <div class="nav-tab" onclick="showView('push')">Chest Days</div>
+  <div class="nav-tab" onclick="showView('full')">Upper Days</div>
   <div class="nav-tab" onclick="showView('tracker')">Tracker</div>
   <div class="nav-tab" onclick="showView('nutrition')">Nutrition</div>
-  <div class="nav-tab" onclick="showView('rest')">Rest Day</div>
+  <div class="nav-tab" onclick="showView('rest')">Recovery</div>
 </div>
 
-<!-- ══════════════════════ PUSH DAYS VIEW ══════════════════════ -->
+<!-- ══════════════════════ CHEST DAYS VIEW ══════════════════════ -->
 <div class="view" id="view-push">
 
-  <!-- DAY 1 -->
+  <!-- DAY 1 — Chest Volume -->
   <div class="day-card" id="card-d1">
     <div class="day-header" onclick="toggleDay('d1')">
-      <div class="day-header-left">
-        <div>
-          <div class="day-badge badge-push">Day 1 · Push</div>
-          <div class="day-title" style="margin-top:6px;">Chest &amp; Triceps</div>
-          <div class="day-progress">
-            <div class="progress-dots" id="dots-d1"></div>
-            <div class="progress-text" id="prog-d1"></div>
-          </div>
-        </div>
-      </div>
+      <div class="day-header-left"><div>
+        <div class="day-badge badge-push">Day 1 · Mon — Chest + Run</div>
+        <div class="day-title" style="margin-top:6px;">Chest Volume Day</div>
+        <div class="day-progress"><div class="progress-dots" id="dots-d1"></div><div class="progress-text" id="prog-d1"></div></div>
+      </div></div>
       <div class="chevron">⌄</div>
     </div>
     <div class="day-body">
       <div class="section-label warmup">— Warm Up (5 min)</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Arm circles</div><div class="ex-detail">30 sec forward, 30 sec back</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Walkout to plank — 5 reps</div><div class="ex-detail">Walk hands out, hold briefly, walk back</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Shoulder rotations — 10 each arm</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Arm circles — 30 sec each direction</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Walkout to plank — 5 reps</div><div class="ex-detail">Slow walk out, hold 2 sec, walk back.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">10 easy standard pushups</div><div class="ex-detail">Just waking the chest up. No strain.</div></div></div>
 
-      <div class="section-label push">— Chest &amp; Triceps</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Wide pushups — 3 sets to near failure</div><div class="ex-detail">Hands wider than shoulders. Squeezes the chest harder.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Diamond pushups — 3 × 10–15</div><div class="ex-detail">Hands in diamond shape. Isolates triceps and inner chest.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Decline pushups — 3 × 10–15</div><div class="ex-detail">Feet elevated on couch or chair. Hits upper chest and shoulders.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Archer pushups — 2 × 6–8 each side</div><div class="ex-detail">One arm extended wide, other arm does the work. Very hard — take your time.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Plyometric pushups — 2 × 5–8</div><div class="ex-detail">Explosive — push hard enough to leave the floor.</div></div></div>
+      <div class="section-label push">— Chest Focus</div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Wide pushups — 4 × 10–15</div><div class="ex-detail">Hands wider than shoulders. Best all-round chest builder. Squeeze hard at the top.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Slow eccentric pushups — 3 × 8</div><div class="ex-detail">3–4 sec down, normal up. Time under tension is the #1 driver of chest growth without weights.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Decline pushups — 3 × 10–12</div><div class="ex-detail">Feet on couch. Hits upper chest. Big for that full, rounded look from the front.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Incline pushups — 3 × 12</div><div class="ex-detail">Hands on couch edge, body angled down. Lower chest. Decline + incline = full chest coverage.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Standard pushups — 2 × max</div><div class="ex-detail">Finish with failure sets. Note your number — it should climb weekly.</div></div></div>
 
-      <div class="section-label abs">— Abs (Every Session)</div>
+      <div class="section-label abs">— Abs</div>
       <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Crunches — 3 × 30–40</div></div></div>
       <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Bicycle kicks — 3 × 40</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Hollow body hold — 3 × 20–30 sec</div><div class="ex-detail">Lower back pressed into floor, arms overhead, legs raised.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Leg raises — 2 × 15</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Hollow body hold — 2 × 20 sec</div><div class="ex-detail">Back flat, arms overhead, legs raised. Core strength baseline.</div></div></div>
 
-      <div class="run-note"><span>🏃</span><span>Run optional today — do it after or as a separate session.</span></div>
+      <div class="run-note"><span>🏃</span><span>Run day — easy 20–30 min. Do it before or a few hours after training.</span></div>
       <button class="reset-btn" onclick="resetDay('d1')">↺ Reset Day</button>
     </div>
   </div>
 
-  <!-- DAY 3 -->
+  <!-- DAY 3 — Chest Variations -->
   <div class="day-card" id="card-d3">
     <div class="day-header" onclick="toggleDay('d3')">
-      <div class="day-header-left">
-        <div>
-          <div class="day-badge badge-push">Day 3 · Push</div>
-          <div class="day-title" style="margin-top:6px;">Chest Variations</div>
-          <div class="day-progress">
-            <div class="progress-dots" id="dots-d3"></div>
-            <div class="progress-text" id="prog-d3"></div>
-          </div>
-        </div>
-      </div>
+      <div class="day-header-left"><div>
+        <div class="day-badge badge-push">Day 3 · Wed — Chest + Run</div>
+        <div class="day-title" style="margin-top:6px;">Chest Variations</div>
+        <div class="day-progress"><div class="progress-dots" id="dots-d3"></div><div class="progress-text" id="prog-d3"></div></div>
+      </div></div>
       <div class="chevron">⌄</div>
     </div>
     <div class="day-body">
-      <div class="section-label push">— Main Session</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Incline pushups — 3 × 15</div><div class="ex-detail">Hands elevated on couch. Hits lower chest.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Standard pushups — 3 × max</div><div class="ex-detail">Go to failure. Note your number.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">One-leg pushup — 3 × 10 each leg</div><div class="ex-detail">One leg raised. More instability = more core and shoulder work.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Offset pushup — 3 × 8 each side</div><div class="ex-detail">One hand slightly forward. Unilateral chest activation.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Slow eccentric pushups — 3 × 8</div><div class="ex-detail">4 seconds down, explode up. Time under tension = muscle growth.</div></div></div>
+      <div class="section-label push">— Chest Variations</div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Hindu pushups — 3 × 8</div><div class="ex-detail">Start in downward dog (hips up), sweep your chest through in a wave motion. Chest + shoulders + flexibility. Look it up once — the movement clicks immediately.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Wide pushups — 3 × 12</div><div class="ex-detail">Bread and butter. Never drop this one.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">One-leg pushup — 3 × 8 each leg</div><div class="ex-detail">Raise one foot off the ground. Adds instability = more chest and core per rep.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Decline pushups — 3 × 10</div><div class="ex-detail">Feet on couch. Upper chest. Keep this in every week — upper chest is what gives that full rounded look.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Diamond pushups — 2 × 10</div><div class="ex-detail">Hands in diamond, elbows track back. Inner chest line + triceps.</div></div></div>
 
       <div class="section-label abs">— Abs</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Crunches — 3 × 40</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Hollow body hold — 3 × 30 sec</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Bicycle kicks — 3 × 50</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Plank — 2 × 45 sec</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Situps — 3 × 30</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Bicycle kicks — 3 × 40</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Plank — 2 × 30–45 sec</div></div></div>
 
-      <div class="run-note"><span>🏃</span><span>Rest day from running if legs are tired. Light walk is fine.</span></div>
+      <div class="run-note"><span>🏃</span><span>Run day — moderate session so good day for a longer run.</span></div>
       <button class="reset-btn" onclick="resetDay('d3')">↺ Reset Day</button>
     </div>
   </div>
 
-  <!-- DAY 5 -->
+  <!-- DAY 5 — Volume + Max Test -->
   <div class="day-card" id="card-d5">
     <div class="day-header" onclick="toggleDay('d5')">
-      <div class="day-header-left">
-        <div>
-          <div class="day-badge badge-push">Day 5 · Push</div>
-          <div class="day-title" style="margin-top:6px;">Power &amp; Volume</div>
-          <div class="day-progress">
-            <div class="progress-dots" id="dots-d5"></div>
-            <div class="progress-text" id="prog-d5"></div>
-          </div>
-        </div>
-      </div>
+      <div class="day-header-left"><div>
+        <div class="day-badge badge-push">Day 5 · Fri — Chest + Run</div>
+        <div class="day-title" style="margin-top:6px;">Volume + Weekly Max Test</div>
+        <div class="day-progress"><div class="progress-dots" id="dots-d5"></div><div class="progress-text" id="prog-d5"></div></div>
+      </div></div>
       <div class="chevron">⌄</div>
     </div>
     <div class="day-body">
-      <div class="section-label warmup">— Grease the Groove (Spread Through the Day)</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Every 1–2 hrs — 10–15 pushups</div><div class="ex-detail">Any variation. Don't go to failure. Fresh sets build neural strength.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Target: 80–100 total across the day</div><div class="ex-detail">Mix wide, standard, diamond freely.</div></div></div>
+      <div class="section-label warmup">— Grease the Groove (Through the Day)</div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Every 1–2 hrs — 10–15 pushups, any variation</div><div class="ex-detail">Don't go to failure. Fresh sets spread through the day = neural strength and volume without fatigue.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Target: 80–100 total across the day</div><div class="ex-detail">Mix wide, standard, decline freely.</div></div></div>
 
-      <div class="section-label push">— Evening Session</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Plyometric pushups — 3 × 8</div><div class="ex-detail">Explosive power. Important for that athletic look.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Pike pushups — 3 × 10</div><div class="ex-detail">Keep the shoulder work going every session.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Max pushup test — 1 set</div><div class="ex-detail">How many can you do? Log it in the Tracker. This is your progress marker.</div></div></div>
+      <div class="section-label push">— Evening Finisher</div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Max pushup test — 1 set</div><div class="ex-detail">Full effort, clean reps only. Log it in the Tracker. This is your weekly benchmark.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Slow eccentric pushups — 2 × 6</div><div class="ex-detail">3 sec down, even when tired. Chest growth happens here.</div></div></div>
 
       <div class="section-label abs">— Abs</div>
       <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Crunches — 3 × 40</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Dragon flag negatives — 3 × 5</div><div class="ex-detail">Lower slowly from lying flat. Advanced core move.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Hollow body hold — 3 × 30 sec</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Hollow body hold — 3 × 25 sec</div></div></div>
       <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Bicycle kicks — 3 × 50</div></div></div>
 
-      <div class="run-note"><span>🏃</span><span>Run in the morning before the groove work starts.</span></div>
+      <div class="run-note"><span>🏃</span><span>Run in the morning before the groove work — keeps them separate and fresh.</span></div>
       <button class="reset-btn" onclick="resetDay('d5')">↺ Reset Day</button>
     </div>
   </div>
 
 </div>
 
-<!-- ══════════════════════ FULL UPPER VIEW ══════════════════════ -->
+<!-- ══════════════════════ UPPER DAYS VIEW ══════════════════════ -->
 <div class="view" id="view-full">
 
-  <!-- DAY 2 -->
+  <!-- DAY 2 — Shoulders + Upper, no run -->
   <div class="day-card" id="card-d2">
     <div class="day-header" onclick="toggleDay('d2')">
-      <div class="day-header-left">
-        <div>
-          <div class="day-badge badge-full">Day 2 · Full Upper</div>
-          <div class="day-title" style="margin-top:6px;">Shoulders + Chest</div>
-          <div class="day-progress">
-            <div class="progress-dots" id="dots-d2"></div>
-            <div class="progress-text" id="prog-d2"></div>
-          </div>
-        </div>
-      </div>
+      <div class="day-header-left"><div>
+        <div class="day-badge badge-full">Day 2 · Tue — Upper Body</div>
+        <div class="day-title" style="margin-top:6px;">Shoulders + Chest + Arms</div>
+        <div class="day-progress"><div class="progress-dots" id="dots-d2"></div><div class="progress-text" id="prog-d2"></div></div>
+      </div></div>
       <div class="chevron">⌄</div>
     </div>
     <div class="day-body">
-      <div class="section-label shoulder">— Shoulder Progression (Priority)</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Pike pushups — 4 × 8–12</div><div class="ex-detail">Hips high in a V, lower head toward floor. The bodyweight overhead press. This builds your V-shape.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Wall handstand hold — 3 × 15–30 sec</div><div class="ex-detail">Kick up against wall. Gets your body used to being inverted.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Shoulder tap plank — 3 × 20 taps</div><div class="ex-detail">Plank, tap each shoulder alternately. Stability and front delt.</div></div></div>
+      <div class="section-label shoulder">— Shoulder Work (V-Shape Priority)</div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Pike position hold — 3 × 15 sec</div><div class="ex-detail">Hips high in a V, arms straight, hold. Builds the shoulder stability you need before doing the full movement. Easier entry point.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Pike pushups — 3 × 3–5 reps</div><div class="ex-detail">Low reps, full control. Slowly lower head toward floor, push back up. This is hard — 3 clean reps beats 8 ugly ones. Gets easier each week.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Wall handstand hold — 2 × 10–15 sec</div><div class="ex-detail">Back against wall, kick up, hold. Just building comfort in the position. Short holds are totally fine right now.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Shoulder tap plank — 3 × 16 taps</div><div class="ex-detail">Plank, alternate shoulder taps without rocking. Front delt + core stability.</div></div></div>
 
-      <div class="section-label full">— Chest + Triceps</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Standard pushups — 4 × 15–20</div><div class="ex-detail">Controlled pace. Full range of motion.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Hindu pushups — 3 × 10</div><div class="ex-detail">Flow from downward dog into a sweeping pushup. Chest, shoulders, triceps, flexibility.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Close grip pushups — 3 × 12</div><div class="ex-detail">Hands close together, elbows track back. Tricep focus.</div></div></div>
+      <div class="section-label full">— Chest + Arms</div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Wide pushups — 3 × 12</div><div class="ex-detail">Chest stays in every session, every day.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Close grip pushups — 3 × 10</div><div class="ex-detail">Hands close, elbows track back along your sides. Triceps and inner chest.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Tricep extension pushup — 2 × 8</div><div class="ex-detail">Start in plank, lower both forearms to the ground, then push back up. Pure tricep isolation.</div></div></div>
 
       <div class="section-label abs">— Abs</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Situps — 3 × 30–40</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Bicycle kicks — 3 × 40</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Side plank — 2 × 20–30 sec each side</div><div class="ex-detail">Obliques. Important for that carved waist look.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Dragon flag negatives — 2 × 5</div><div class="ex-detail">Advanced. Lower yourself slowly from lying flat.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Situps — 3 × 30</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Side plank — 2 × 20 sec each side</div><div class="ex-detail">Obliques. Important for the carved waist look.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Leg raises — 2 × 12</div></div></div>
 
-      <div class="run-note"><span>🏃</span><span>Good run day — do it after or a few hours later.</span></div>
+      <div class="run-note"><span>🚶</span><span>No run today — heavier session. Light walk is enough.</span></div>
       <button class="reset-btn" onclick="resetDay('d2')">↺ Reset Day</button>
     </div>
   </div>
 
-  <!-- DAY 4 -->
+  <!-- DAY 4 — Full Upper + Run -->
   <div class="day-card" id="card-d4">
     <div class="day-header" onclick="toggleDay('d4')">
-      <div class="day-header-left">
-        <div>
-          <div class="day-badge badge-full">Day 4 · Full Upper</div>
-          <div class="day-title" style="margin-top:6px;">Handstand Progression</div>
-          <div class="day-progress">
-            <div class="progress-dots" id="dots-d4"></div>
-            <div class="progress-text" id="prog-d4"></div>
-          </div>
-        </div>
-      </div>
+      <div class="day-header-left"><div>
+        <div class="day-badge badge-full">Day 4 · Thu — Upper + Run</div>
+        <div class="day-title" style="margin-top:6px;">Full Upper + Progressions</div>
+        <div class="day-progress"><div class="progress-dots" id="dots-d4"></div><div class="progress-text" id="prog-d4"></div></div>
+      </div></div>
       <div class="chevron">⌄</div>
     </div>
     <div class="day-body">
       <div class="section-label shoulder">— Shoulder Progression</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Pike pushups — 4 × 10–15</div><div class="ex-detail">Try to beat Day 2. Slower descent = harder.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Wall handstand hold — 3 × 20–40 sec</div><div class="ex-detail">Work on increasing hold time each week.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Pike pushup elevated feet — 3 × 6–8</div><div class="ex-detail">Feet on couch. More weight on shoulders. Harder version.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Pike pushups — 3 × 4–6 reps</div><div class="ex-detail">Try to beat Day 2. Add 1 rep when you can do all 3 sets cleanly.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Wall handstand hold — 2 × 15–20 sec</div><div class="ex-detail">Longer than Day 2. Just stacking time in position.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Archer pushup — 1 × 3–5 each side</div><div class="ex-detail">Goal exercise. Very wide stance, shift weight to one arm, do a slow pushup on that side. Just a few reps. Don't force it — this is a long-term build.</div></div></div>
 
       <div class="section-label full">— Chest + Arms</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Wide pushups — 3 × max</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Diamond pushups — 3 × 12–15</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Archer pushups — 2 × 8 each side</div><div class="ex-detail">Getting stronger here means one-arm pushup is not far off.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Tricep extension pushup — 2 × 10</div><div class="ex-detail">Start in plank, lower forearms to ground, push back up. Pure tricep isolation.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Wide pushups — 3 × 12–15</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Decline pushups — 3 × 10</div><div class="ex-detail">Feet on couch. Upper chest every week without fail.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Diamond pushups — 3 × 10–12</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Hindu pushups — 2 × 8</div><div class="ex-detail">Flowing sweep motion. Full chest + shoulders + flexibility in one move.</div></div></div>
 
       <div class="section-label abs">— Abs</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Situps — 3 × 40</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Leg raises — 3 × 15</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Side plank — 2 × 30 sec each</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Bicycle kicks — 3 × 50</div></div></div>
-
-      <div class="run-note"><span>🏃</span><span>Good run day. Medium distance, comfortable pace.</span></div>
-      <button class="reset-btn" onclick="resetDay('d4')">↺ Reset Day</button>
-    </div>
-  </div>
-
-  <!-- DAY 6 -->
-  <div class="day-card" id="card-d6">
-    <div class="day-header" onclick="toggleDay('d6')">
-      <div class="day-header-left">
-        <div>
-          <div class="day-badge badge-full">Day 6 · Full Upper</div>
-          <div class="day-title" style="margin-top:6px;">Weekly Best Effort</div>
-          <div class="day-progress">
-            <div class="progress-dots" id="dots-d6"></div>
-            <div class="progress-text" id="prog-d6"></div>
-          </div>
-        </div>
-      </div>
-      <div class="chevron">⌄</div>
-    </div>
-    <div class="day-body">
-      <div class="section-label shoulder">— Weekly Benchmarks</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Max consecutive pushups — 1 set</div><div class="ex-detail">Your weekly benchmark. Log it in the Tracker tab.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Pike pushups — 4 × max</div><div class="ex-detail">Push yourself. How many vs last week?</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Wall handstand hold — 3 × max time</div><div class="ex-detail">Beat last week.</div></div></div>
-
-      <div class="section-label full">— Full Session</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Archer pushups — 3 × 8–10 each side</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Hindu pushups — 3 × 12</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Diamond pushups — 3 × 15</div></div></div>
-
-      <div class="section-label abs">— Full Abs Circuit</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Situps — 3 × 40</div></div></div>
       <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Crunches — 3 × 40</div></div></div>
       <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Bicycle kicks — 3 × 50</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Leg raises — 3 × 20</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Hollow body hold — 3 × 30 sec</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Plank — 2 × 60 sec</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Side plank — 2 × 25 sec each</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Leg raises — 2 × 15</div></div></div>
 
-      <div class="run-note"><span>🏃</span><span>Optional — keep it easy if you run today. You've earned it.</span></div>
-      <button class="reset-btn" onclick="resetDay('d6')">↺ Reset Day</button>
+      <div class="run-note"><span>🏃</span><span>Run day — medium distance, comfortable pace. Do it before or after.</span></div>
+      <button class="reset-btn" onclick="resetDay('d4')">↺ Reset Day</button>
     </div>
   </div>
 
@@ -1085,11 +1017,30 @@
     <div class="protein-row"><span class="protein-food">Canned tuna/salmon</span><span class="protein-serving">1 can</span><span class="protein-amount">~25g</span></div>
     <div class="protein-row"><span class="protein-food">Smoked salmon</span><span class="protein-serving">75g</span><span class="protein-amount">~15g</span></div>
     <div class="protein-row"><span class="protein-food">Balderson cheddar</span><span class="protein-serving">2 slices</span><span class="protein-amount">~10g</span></div>
+    <div class="protein-row"><span class="protein-food">Cottage cheese</span><span class="protein-serving">1 cup</span><span class="protein-amount">~25g</span></div>
+    <div class="protein-row"><span class="protein-food">Greek yogurt (2%)</span><span class="protein-serving">3/4 cup</span><span class="protein-amount">~17g</span></div>
+    <div class="protein-row"><span class="protein-food">Chicken breast</span><span class="protein-serving">100g</span><span class="protein-amount">~31g</span></div>
+    <div class="protein-row"><span class="protein-food">Turkey slices (deli)</span><span class="protein-serving">4 slices</span><span class="protein-amount">~14g</span></div>
+    <div class="protein-row"><span class="protein-food">Hard boiled eggs</span><span class="protein-serving">2 eggs</span><span class="protein-amount">~12g</span></div>
     <div class="protein-row"><span class="protein-food">Fresh Prep meal</span><span class="protein-serving">1 meal</span><span class="protein-amount">~30g</span></div>
     <div class="protein-row"><span class="protein-food">Pork sausage (dry)</span><span class="protein-serving">2 pieces</span><span class="protein-amount">~12g</span></div>
     <div class="protein-row"><span class="protein-food">Chia pudding (skyr)</span><span class="protein-serving">1 bowl</span><span class="protein-amount">~18g</span></div>
     <div class="protein-row"><span class="protein-food">Pumpkin seeds</span><span class="protein-serving">1/4 cup</span><span class="protein-amount">~9g</span></div>
     <div class="protein-row"><span class="protein-food">Steel cut oatmeal</span><span class="protein-serving">1 cup cooked</span><span class="protein-amount">~6g</span></div>
+    <div class="protein-row"><span class="protein-food">Edamame</span><span class="protein-serving">1/2 cup</span><span class="protein-amount">~9g</span></div>
+    <div class="protein-row"><span class="protein-food">Beef jerky</span><span class="protein-serving">30g</span><span class="protein-amount">~10g</span></div>
+  </div>
+
+  <!-- EASY MEAL IDEAS -->
+  <div class="protein-card">
+    <div class="protein-title">🍴 Easy High-Protein Meal Ideas</div>
+    <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Skyr chia pudding</div><div class="meal-item-note">Mix skyr + chia seeds + a splash of milk the night before. Add berries. ~20g protein, zero effort.</div></div></div>
+    <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Salmon + rice</div><div class="meal-item-note">Canned salmon, rice, a bit of soy or lemon. Fast, lean, filling. ~30g protein.</div></div></div>
+    <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Egg white + whole egg omelet</div><div class="meal-item-note">2 whole eggs + 2 whites. More protein, less fat. Add mozza and spinach.</div></div></div>
+    <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Cottage cheese bowl</div><div class="meal-item-note">Cottage cheese + pumpkin seeds + a drizzle of hot sauce. ~28g protein, great snack or lunch.</div></div></div>
+    <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Turkey + avocado wrap</div><div class="meal-item-note">Deli turkey, avocado, cheddar in a tortilla. Protein + healthy fat. ~25g.</div></div></div>
+    <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Greek yogurt parfait</div><div class="meal-item-note">Layer Greek yogurt, berries, a handful of oats. Easy breakfast swap for variety. ~20g.</div></div></div>
+    <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Hard boiled eggs + cheddar</div><div class="meal-item-note">Prep 4–6 eggs Sunday, eat them all week. Easiest snack ever. ~14g for 2 eggs + cheese.</div></div></div>
   </div>
 
   <!-- RULES -->
@@ -1103,20 +1054,71 @@
 
 </div>
 
-<!-- ══════════════════════ REST VIEW ══════════════════════ -->
+<!-- ══════════════════════ RECOVERY VIEW ══════════════════════ -->
 <div class="view" id="view-rest">
-  <div class="rest-view">
-    <div class="rest-icon">🌙</div>
-    <div class="rest-big">REST DAY</div>
-    <div class="rest-text">Muscle grows during recovery, not during the workout. Walk, stretch, eat your protein, hydrate. That's it. You've earned this.</div>
-    <br><br>
-    <div class="rest-text" style="font-size:12px; color: var(--muted);">
-      <strong style="color:var(--text);">Today's checklist:</strong><br><br>
-      ✓ Hit protein at every meal<br>
-      ✓ Drink 2–3L of water<br>
-      ✓ Light walk if you want to move<br>
-      ✓ Sleep 7–9 hrs tonight
+  <div class="nutrition-view-header">
+    <div class="nutrition-view-title">Weekend Recovery</div>
+    <div class="nutrition-view-sub">Sat + Sun — this is where the gains actually happen.</div>
+  </div>
+
+  <div class="water-card" style="margin-bottom:10px;">
+    <div class="water-title" style="color:var(--full);">Why Recovery Matters</div>
+    <div style="font-size:12px;color:var(--muted);line-height:1.7;">Muscle is built during rest, not training. Two full days of recovery means you come back Monday stronger. Don't skip this — it's part of the program.</div>
+  </div>
+
+  <!-- SAT RECOVERY -->
+  <div class="meal-card" id="meal-sat">
+    <div class="meal-header" onclick="toggleMeal('sat')">
+      <div class="meal-header-left">
+        <div class="meal-emoji">🧘</div>
+        <div>
+          <div class="meal-time">Saturday</div>
+          <div class="meal-name">Active Recovery + Stretch</div>
+        </div>
+      </div>
+      <div class="chevron">⌄</div>
     </div>
+    <div class="meal-body">
+      <div class="section-label full" style="margin-bottom:8px;">— Morning Stretch (10–15 min)</div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Chest opener stretch — 3 × 30 sec</div><div class="ex-detail">Clasp hands behind your back, squeeze shoulder blades, lift chest. Counteracts all the pushing work.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Doorway chest stretch — 2 × 30 sec each side</div><div class="ex-detail">Arm at 90 degrees on a doorframe, lean through gently. Best stretch for building pec flexibility = better range of motion = more growth.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Child's pose — 2 × 45 sec</div><div class="ex-detail">Hips back to heels, arms extended forward. Back and shoulder decompression.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Shoulder cross-body stretch — 2 × 20 sec each</div><div class="ex-detail">Pull one arm across your chest. Rear delt and shoulder mobility.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Cat-cow — 10 reps</div><div class="ex-detail">On all fours, alternate arching and rounding your back. Spine health.</div></div></div>
+      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Hip flexor lunge stretch — 2 × 30 sec each side</div><div class="ex-detail">Low lunge, back knee on floor, push hips forward. Important for posture and how you carry yourself.</div></div></div>
+      <div class="section-label warmup" style="margin-top:10px;margin-bottom:8px;">— Rest of the Day</div>
+      <div class="meal-item"><div class="meal-dot" style="background:var(--full);"></div><div class="meal-item-text"><div class="meal-item-name">Light walk — 20–30 min if you want to move</div><div class="meal-item-note">Keep it easy. No running today.</div></div></div>
+      <div class="meal-item"><div class="meal-dot" style="background:var(--full);"></div><div class="meal-item-text"><div class="meal-item-name">Hit your protein as normal</div><div class="meal-item-note">Recovery still needs fuel. Don't undereat on rest days.</div></div></div>
+      <div class="meal-item"><div class="meal-dot" style="background:var(--full);"></div><div class="meal-item-text"><div class="meal-item-name">Hydrate well — 2–3L</div></div></div>
+    </div>
+  </div>
+
+  <!-- SUN FULL REST -->
+  <div class="meal-card" id="meal-sun">
+    <div class="meal-header" onclick="toggleMeal('sun')">
+      <div class="meal-header-left">
+        <div class="meal-emoji">🌙</div>
+        <div>
+          <div class="meal-time">Sunday</div>
+          <div class="meal-name">Full Rest Day</div>
+        </div>
+      </div>
+      <div class="chevron">⌄</div>
+    </div>
+    <div class="meal-body">
+      <div class="meal-item"><div class="meal-dot" style="background:var(--muted);"></div><div class="meal-item-text"><div class="meal-item-name">No training. No running.</div><div class="meal-item-note">Your body is rebuilding. Let it.</div></div></div>
+      <div class="meal-item"><div class="meal-dot" style="background:var(--muted);"></div><div class="meal-item-text"><div class="meal-item-name">Optional: 5 min chest stretch</div><div class="meal-item-note">Doorway stretch if you feel tight. That's it.</div></div></div>
+      <div class="meal-item"><div class="meal-dot" style="background:var(--muted);"></div><div class="meal-item-text"><div class="meal-item-name">Eat well, sleep 7–9 hrs tonight</div><div class="meal-item-note">Monday you come back stronger. That's the whole point.</div></div></div>
+      <div class="meal-item"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">Cheat meal if you want one</div><div class="meal-item-note">Sunday is a great day for it. Enjoy it without guilt.</div></div></div>
+    </div>
+  </div>
+
+  <div class="water-card" style="margin-bottom:10px;margin-top:4px;">
+    <div class="water-title" style="color:var(--gold);">Weekend Checklist</div>
+    <div class="meal-item" style="padding:8px 0;border-bottom:1px solid var(--border);"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">Sat morning stretch — 10–15 min</div></div></div>
+    <div class="meal-item" style="padding:8px 0;border-bottom:1px solid var(--border);"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">Protein every meal both days</div></div></div>
+    <div class="meal-item" style="padding:8px 0;border-bottom:1px solid var(--border);"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">2–3L water daily</div></div></div>
+    <div class="meal-item" style="padding:8px 0;"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">Sleep well Sunday night — Monday is Day 1 again</div></div></div>
   </div>
 </div>
 
@@ -1124,11 +1126,11 @@
 <div class="bottom-nav">
   <button class="bnav-btn" id="bnav-push" onclick="showView('push')">
     <span class="icon">💪</span>
-    <span class="label">Push</span>
+    <span class="label">Chest</span>
   </button>
   <button class="bnav-btn" id="bnav-full" onclick="showView('full')">
     <span class="icon">🏛️</span>
-    <span class="label">Full Upper</span>
+    <span class="label">Upper</span>
   </button>
   <button class="bnav-btn" id="bnav-tracker" onclick="showView('tracker')">
     <span class="icon">📈</span>
