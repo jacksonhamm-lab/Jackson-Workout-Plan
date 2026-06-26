@@ -15,14 +15,16 @@
     --border: #ffffff0f;
     --text: #f0eff5;
     --muted: #6b6a7a;
-    --push: #e85d26;
-    --push-dim: #e85d2618;
-    --full: #2e9e6b;
-    --full-dim: #2e9e6b18;
-    --abs: #4a9eff;
-    --abs-dim: #4a9eff15;
+    --push: #4a9eff;
+    --push-dim: #4a9eff18;
+    --pull: #2e9e6b;
+    --pull-dim: #2e9e6b18;
+    --abs: #a78bfa;
+    --abs-dim: #a78bfa15;
     --gold: #f0c040;
     --gold-dim: #f0c04015;
+    --hiit: #fb7185;
+    --hiit-dim: #fb718518;
     --rest: #4a4a5a;
   }
 
@@ -48,7 +50,7 @@
     position: absolute;
     top: -60px; right: -60px;
     width: 240px; height: 240px;
-    background: radial-gradient(circle, #e85d2622 0%, transparent 70%);
+    background: radial-gradient(circle, #4a9eff22 0%, transparent 70%);
     pointer-events: none;
   }
   .header-label {
@@ -73,6 +75,19 @@
     color: var(--muted);
     font-weight: 300;
     letter-spacing: 0.5px;
+  }
+  .week-pill {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    text-transform: uppercase;
   }
 
   /* NAV TABS */
@@ -100,13 +115,12 @@
     transition: all 0.2s;
   }
   .nav-tab.active-push { background: var(--push-dim); border-color: var(--push); color: var(--push); }
-  .nav-tab.active-full { background: var(--full-dim); border-color: var(--full); color: var(--full); }
+  .nav-tab.active-pull { background: var(--pull-dim); border-color: var(--pull); color: var(--pull); }
   .nav-tab.active-tracker { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
   .nav-tab.active-rest { background: #4a4a5a22; border-color: var(--rest); color: #aaa; }
-  .nav-tab.active-nutrition { background: #9e4e2e18; border-color: #e07040; color: #e07040; }
 
   /* VIEWS */
-  .view { display: none; padding: 0 20px 100px; animation: fadeUp 0.3s ease; }
+  .view { display: none; padding: 0 20px 120px; animation: fadeUp 0.3s ease; }
   .view.active { display: block; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -126,7 +140,7 @@
     cursor: pointer;
     user-select: none;
   }
-  .day-header-left { display: flex; align-items: center; gap: 12px; }
+  .day-header-left { display: flex; align-items: center; gap: 12px; flex: 1; }
   .day-badge {
     font-family: 'Oswald', sans-serif;
     font-size: 11px;
@@ -135,17 +149,18 @@
     padding: 4px 10px;
     border-radius: 6px;
     text-transform: uppercase;
+    display: inline-block;
   }
-  .badge-push { background: var(--push-dim); color: var(--push); border: 1px solid #e85d2640; }
-  .badge-full { background: var(--full-dim); color: var(--full); border: 1px solid #2e9e6b40; }
-  .badge-rest { background: #4a4a5a22; color: #888; border: 1px solid #4a4a5a44; }
+  .badge-push { background: var(--push-dim); color: var(--push); border: 1px solid #4a9eff40; }
+  .badge-pull { background: var(--pull-dim); color: var(--pull); border: 1px solid #2e9e6b40; }
+  .badge-bench { background: var(--gold-dim); color: var(--gold); border: 1px solid #f0c04040; }
   .day-title {
     font-family: 'Oswald', sans-serif;
     font-size: 15px;
     font-weight: 500;
     letter-spacing: 0.5px;
+    margin-top: 6px;
   }
-  .day-subtitle { font-size: 11px; color: var(--muted); margin-top: 1px; }
   .chevron {
     color: var(--muted);
     font-size: 18px;
@@ -158,7 +173,7 @@
   .day-body { display: none; padding: 0 18px 18px; }
   .day-card.open .day-body { display: block; }
 
-  /* SECTION */
+  /* SECTION LABEL */
   .section-label {
     font-family: 'Oswald', sans-serif;
     font-size: 10px;
@@ -170,76 +185,101 @@
     margin-bottom: 10px;
   }
   .section-label.push { color: var(--push); }
-  .section-label.full { color: var(--full); }
+  .section-label.pull { color: var(--pull); }
   .section-label.abs { color: var(--abs); }
+  .section-label.gold { color: var(--gold); }
   .section-label.warmup { color: var(--muted); }
-  .section-label.shoulder { color: var(--gold); }
 
   /* EXERCISE ITEM */
   .ex-item {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    padding: 9px 0;
+    padding: 10px 0;
     border-bottom: 1px solid var(--border);
-    cursor: pointer;
-    transition: opacity 0.2s;
+    transition: opacity 0.25s;
   }
   .ex-item:last-child { border-bottom: none; }
-  .ex-item.done { opacity: 0.35; }
-  .ex-check {
-    width: 22px;
-    height: 22px;
-    border-radius: 6px;
-    border: 1.5px solid var(--muted);
+  .ex-item.done { opacity: 0.4; }
+  .ex-text { flex: 1; min-width: 0; }
+  .ex-name { font-size: 13px; font-weight: 500; line-height: 1.35; }
+  .ex-detail { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.45; }
+
+  .ex-sets {
+    display: flex;
+    gap: 5px;
     flex-shrink: 0;
-    margin-top: 1px;
+    margin-top: 2px;
+  }
+  .set-dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 7px;
+    border: 1.5px solid var(--muted);
+    background: transparent;
+    color: var(--muted);
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s;
-    font-size: 12px;
+    padding: 0;
   }
-  .ex-item.done .ex-check {
-    background: var(--full);
-    border-color: var(--full);
+  .set-dot:active { transform: scale(0.92); }
+  .set-dot.done {
+    background: var(--pull);
+    border-color: var(--pull);
     color: white;
   }
-  .ex-text { flex: 1; }
-  .ex-name { font-size: 13px; font-weight: 500; line-height: 1.3; }
-  .ex-detail { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
 
-  /* RUN NOTE */
-  .run-note {
+  /* CARDIO NOTE */
+  .cardio-note {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
+    background: var(--hiit-dim);
+    border: 1px solid #fb718540;
     border-radius: 10px;
     padding: 10px 14px;
     margin-top: 14px;
     font-size: 11.5px;
-    color: var(--muted);
+    color: var(--text);
   }
-  .run-note span:first-child { font-size: 16px; }
+  .cardio-note .ico { font-size: 16px; }
+  .cardio-note .cardio-cta {
+    margin-left: auto;
+    background: var(--hiit);
+    color: #0a0a0f;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
 
-  /* PROGRESS RING */
+  /* DAY PROGRESS */
   .day-progress {
     display: flex;
     align-items: center;
     gap: 6px;
-    margin-top: 4px;
+    margin-top: 8px;
   }
-  .progress-dots { display: flex; gap: 3px; }
+  .progress-dots { display: flex; gap: 3px; flex-wrap: wrap; max-width: 140px; }
   .dot {
     width: 5px; height: 5px;
     border-radius: 50%;
     background: var(--border);
     transition: background 0.2s;
   }
-  .dot.done { background: var(--full); }
-  .progress-text { font-size: 10px; color: var(--muted); }
+  .dot.done { background: var(--pull); }
+  .progress-text { font-size: 10px; color: var(--muted); margin-left: 4px; }
 
   /* RESET BTN */
   .reset-btn {
@@ -257,212 +297,8 @@
     margin-top: 16px;
   }
 
-  /* NUTRITION */
-  --nutrition: #e07040;
-  --nutrition-dim: #e0704018;
-
-  /* MEAL CARD */
-  .meal-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    margin-bottom: 10px;
-    overflow: hidden;
-  }
-  .meal-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 18px;
-    cursor: pointer;
-    user-select: none;
-  }
-  .meal-header-left { display: flex; align-items: center; gap: 12px; }
-  .meal-emoji { font-size: 22px; }
-  .meal-time {
-    font-family: 'Oswald', sans-serif;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: #e07040;
-    text-transform: uppercase;
-    margin-bottom: 2px;
-  }
-  .meal-name {
-    font-family: 'Oswald', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-  }
-  .meal-body { display: none; padding: 0 18px 16px; }
-  .meal-card.open .meal-body { display: block; }
-  .meal-card.open .chevron { transform: rotate(180deg); }
-
-  .meal-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 13px;
-  }
-  .meal-item:last-child { border-bottom: none; }
-  .meal-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #e07040;
-    flex-shrink: 0;
-    margin-top: 5px;
-  }
-  .meal-item-text { flex: 1; }
-  .meal-item-name { font-weight: 500; }
-  .meal-item-note { font-size: 11px; color: var(--muted); margin-top: 2px; }
-
-  /* WATER TRACKER */
-  .water-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 18px;
-    margin-bottom: 10px;
-  }
-  .water-title {
-    font-family: 'Oswald', sans-serif;
-    font-size: 13px;
-    letter-spacing: 2px;
-    color: var(--abs);
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-  .water-glasses {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 14px;
-  }
-  .glass-btn {
-    width: 44px; height: 44px;
-    border-radius: 10px;
-    border: 1.5px solid var(--border);
-    background: var(--surface2);
-    font-size: 20px;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.15s;
-  }
-  .glass-btn.filled {
-    background: #4a9eff22;
-    border-color: var(--abs);
-  }
-  .water-count {
-    font-family: 'Oswald', sans-serif;
-    font-size: 13px;
-    color: var(--muted);
-  }
-  .water-count span { color: var(--abs); font-size: 20px; }
-
-  /* CHEAT TRACKER */
-  .cheat-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 18px;
-    margin-bottom: 10px;
-  }
-  .cheat-title {
-    font-family: 'Oswald', sans-serif;
-    font-size: 13px;
-    letter-spacing: 2px;
-    color: var(--push);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .cheat-sub { font-size: 11px; color: var(--muted); margin-bottom: 14px; }
-  .cheat-circles {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 14px;
-  }
-  .cheat-circle {
-    width: 56px; height: 56px;
-    border-radius: 50%;
-    border: 2px solid var(--border);
-    background: var(--surface2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .cheat-circle.used {
-    background: #e85d2622;
-    border-color: var(--push);
-  }
-  .cheat-status { font-size: 12px; color: var(--muted); }
-  .cheat-status.ok { color: var(--full); }
-  .cheat-status.maxed { color: var(--push); }
-
-  /* PROTEIN TABLE */
-  .protein-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 18px;
-    margin-bottom: 10px;
-  }
-  .protein-title {
-    font-family: 'Oswald', sans-serif;
-    font-size: 13px;
-    letter-spacing: 2px;
-    color: var(--full);
-    text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-  .protein-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 12px;
-  }
-  .protein-row:last-child { border-bottom: none; }
-  .protein-food { color: var(--text); font-weight: 500; flex: 1; }
-  .protein-serving { color: var(--muted); font-size: 11px; flex: 1; text-align: center; }
-  .protein-amount {
-    font-family: 'Oswald', sans-serif;
-    font-size: 15px;
-    color: var(--full);
-    font-weight: 600;
-    text-align: right;
-    min-width: 44px;
-  }
-  .protein-header-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 0 8px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 4px;
-    font-size: 10px;
-    letter-spacing: 1px;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-
-  /* NUTRITION VIEW HEADER */
-  .nutrition-view-header {
-    padding: 8px 0 16px;
-  }
-  .nutrition-view-title {
-    font-family: 'Oswald', sans-serif;
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    margin-bottom: 4px;
-  }
-  .nutrition-view-sub { font-size: 12px; color: var(--muted); }
-
   /* TRACKER VIEW */
-  .tracker-header {
-    padding: 8px 0 20px;
-  }
+  .tracker-header { padding: 8px 0 16px; }
   .tracker-title {
     font-family: 'Oswald', sans-serif;
     font-size: 22px;
@@ -471,6 +307,35 @@
     margin-bottom: 4px;
   }
   .tracker-sub { font-size: 12px; color: var(--muted); }
+
+  .track-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .track-tabs::-webkit-scrollbar { display: none; }
+  .track-tab {
+    flex: 1;
+    min-width: 70px;
+    padding: 8px 6px;
+    border-radius: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+  }
+  .track-tab.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+
+  .track-pane { display: none; }
+  .track-pane.active { display: block; }
 
   .stat-row {
     display: grid;
@@ -493,10 +358,9 @@
     line-height: 1;
     color: var(--gold);
   }
-  .stat-value.green { color: var(--full); }
+  .stat-value.green { color: var(--pull); }
   .stat-sub { font-size: 10px; color: var(--muted); margin-top: 4px; }
 
-  /* LOG INPUT */
   .log-section {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -512,11 +376,7 @@
     margin-bottom: 14px;
     color: var(--gold);
   }
-  .log-input-row {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
+  .log-input-row { display: flex; gap: 10px; align-items: center; }
   .log-input {
     flex: 1;
     background: var(--surface2);
@@ -544,6 +404,66 @@
     letter-spacing: 1px;
     cursor: pointer;
     white-space: nowrap;
+  }
+
+  /* CARDIO LOG */
+  .cardio-types {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .cardio-type-btn {
+    flex: 1;
+    min-width: 60px;
+    padding: 8px 8px;
+    border-radius: 8px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .cardio-type-btn.selected {
+    background: var(--hiit-dim);
+    border-color: var(--hiit);
+    color: var(--hiit);
+  }
+  .cardio-input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .cardio-input-grid input {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: var(--text);
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    outline: none;
+    text-align: center;
+    width: 100%;
+  }
+  .cardio-input-grid input:focus { border-color: var(--hiit); }
+  .cardio-log-btn {
+    width: 100%;
+    background: var(--hiit);
+    color: #0a0a0f;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
   }
 
   /* CHART */
@@ -578,11 +498,7 @@
     height: 100%;
     justify-content: flex-end;
   }
-  .bar-val {
-    font-family: 'Oswald', sans-serif;
-    font-size: 10px;
-    color: var(--muted);
-  }
+  .bar-val { font-family: 'Oswald', sans-serif; font-size: 10px; color: var(--muted); }
   .bar {
     width: 100%;
     border-radius: 4px 4px 0 0;
@@ -592,14 +508,10 @@
     min-height: 4px;
   }
   .bar.latest { background: var(--gold); border-color: var(--gold); }
-  .bar-week {
-    font-size: 9px;
-    color: var(--muted);
-    white-space: nowrap;
-  }
-  .chart-empty { font-size: 12px; color: var(--muted); text-align: center; padding: 30px 0; }
+  .bar-week { font-size: 9px; color: var(--muted); white-space: nowrap; }
+  .chart-empty { font-size: 12px; color: var(--muted); text-align: center; padding: 30px 0; width: 100%; }
 
-  /* LOG HISTORY */
+  /* HISTORY */
   .history-item {
     display: flex;
     justify-content: space-between;
@@ -607,9 +519,9 @@
     padding: 10px 0;
     border-bottom: 1px solid var(--border);
     font-size: 13px;
+    gap: 10px;
   }
   .history-item:last-child { border-bottom: none; }
-  .history-week { color: var(--muted); font-size: 11px; }
   .history-reps {
     font-family: 'Oswald', sans-serif;
     font-size: 18px;
@@ -617,8 +529,8 @@
     color: var(--gold);
   }
   .history-delta { font-size: 11px; }
-  .history-delta.up { color: var(--full); }
-  .history-delta.down { color: var(--push); }
+  .history-delta.up { color: var(--pull); }
+  .history-delta.down { color: var(--hiit); }
   .history-delta.same { color: var(--muted); }
   .del-btn {
     background: none;
@@ -681,444 +593,265 @@
   .bnav-btn .label { font-size: 9px; letter-spacing: 0.5px; text-transform: uppercase; }
   .bnav-btn.active { color: var(--text); background: var(--surface2); }
   .bnav-btn.active-push-btn { color: var(--push); }
-  .bnav-btn.active-full-btn { color: var(--full); }
-  .bnav-btn.active-nutrition-btn { color: #e07040; }
+  .bnav-btn.active-pull-btn { color: var(--pull); }
+  .bnav-btn.active-gold-btn { color: var(--gold); }
+
+  /* REST TIMER */
+  .rest-timer {
+    position: fixed;
+    bottom: 84px;
+    left: 16px;
+    right: 16px;
+    background: var(--surface);
+    border: 1px solid var(--push);
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: none;
+    align-items: center;
+    gap: 14px;
+    z-index: 99;
+    box-shadow: 0 8px 24px #0008;
+    animation: slideUp 0.25s ease;
+  }
+  .rest-timer.show { display: flex; }
+  @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .rest-timer-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .rest-timer-count {
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--push);
+    line-height: 1;
+  }
+  .rest-timer-info { flex: 1; }
+  .rest-timer-actions { display: flex; gap: 6px; }
+  .rest-timer-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .rest-timer-btn.primary { background: var(--push); border-color: var(--push); color: #0a0a0f; }
+
+  /* CARDIO MODAL */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: #000a;
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 200;
+  }
+  .modal-backdrop.show { display: flex; }
+  .modal {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-radius: 20px 20px 0 0;
+    padding: 22px 20px 32px;
+    width: 100%;
+    max-width: 480px;
+    animation: slideUp 0.25s ease;
+  }
+  .modal-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    color: var(--hiit);
+  }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="header-label">5-Day Calisthenics</div>
+  <div class="header-label">6-Day Calisthenics</div>
   <div class="header-title">THE <span>PROGRAM</span></div>
   <div class="header-sub">Lean · Athletic · No Gym Required</div>
+  <div class="week-pill" id="weekPill">Week of —</div>
 </div>
 
 <div class="nav" id="topNav">
-  <div class="nav-tab" onclick="showView('push')">Chest Days</div>
-  <div class="nav-tab" onclick="showView('full')">Upper Days</div>
+  <div class="nav-tab" onclick="showView('push')">Push Days</div>
+  <div class="nav-tab" onclick="showView('pull')">Pull Days</div>
   <div class="nav-tab" onclick="showView('tracker')">Tracker</div>
-  <div class="nav-tab" onclick="showView('nutrition')">Nutrition</div>
-  <div class="nav-tab" onclick="showView('rest')">Recovery</div>
+  <div class="nav-tab" onclick="showView('rest')">Rest Day</div>
 </div>
 
-<!-- ══════════════════════ CHEST DAYS VIEW ══════════════════════ -->
-<div class="view" id="view-push">
-
-  <!-- DAY 1 — Chest Volume -->
-  <div class="day-card" id="card-d1">
-    <div class="day-header" onclick="toggleDay('d1')">
-      <div class="day-header-left"><div>
-        <div class="day-badge badge-push">Day 1 · Mon — Chest + Run</div>
-        <div class="day-title" style="margin-top:6px;">Chest Volume Day</div>
-        <div class="day-progress"><div class="progress-dots" id="dots-d1"></div><div class="progress-text" id="prog-d1"></div></div>
-      </div></div>
-      <div class="chevron">⌄</div>
-    </div>
-    <div class="day-body">
-      <div class="section-label warmup">— Warm Up (5 min)</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Arm circles — 30 sec each direction</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Walkout to plank — 5 reps</div><div class="ex-detail">Slow walk out, hold 2 sec, walk back.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">10 easy standard pushups</div><div class="ex-detail">Just waking the chest up. No strain.</div></div></div>
-
-      <div class="section-label push">— Chest Focus</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Wide pushups — 4 × 10–15</div><div class="ex-detail">Hands wider than shoulders. Best all-round chest builder. Squeeze hard at the top.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Slow eccentric pushups — 3 × 8</div><div class="ex-detail">3–4 sec down, normal up. Time under tension is the #1 driver of chest growth without weights.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Decline pushups — 3 × 10–12</div><div class="ex-detail">Feet on couch. Hits upper chest. Big for that full, rounded look from the front.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Incline pushups — 3 × 12</div><div class="ex-detail">Hands on couch edge, body angled down. Lower chest. Decline + incline = full chest coverage.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Standard pushups — 2 × max</div><div class="ex-detail">Finish with failure sets. Note your number — it should climb weekly.</div></div></div>
-
-      <div class="section-label abs">— Abs</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Crunches — 3 × 30–40</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Bicycle kicks — 3 × 40</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Hollow body hold — 2 × 20 sec</div><div class="ex-detail">Back flat, arms overhead, legs raised. Core strength baseline.</div></div></div>
-
-      <div class="run-note"><span>🏃</span><span>Run day — easy 20–30 min. Do it before or a few hours after training.</span></div>
-      <button class="reset-btn" onclick="resetDay('d1')">↺ Reset Day</button>
-    </div>
-  </div>
-
-  <!-- DAY 3 — Chest Variations -->
-  <div class="day-card" id="card-d3">
-    <div class="day-header" onclick="toggleDay('d3')">
-      <div class="day-header-left"><div>
-        <div class="day-badge badge-push">Day 3 · Wed — Chest + Run</div>
-        <div class="day-title" style="margin-top:6px;">Chest Variations</div>
-        <div class="day-progress"><div class="progress-dots" id="dots-d3"></div><div class="progress-text" id="prog-d3"></div></div>
-      </div></div>
-      <div class="chevron">⌄</div>
-    </div>
-    <div class="day-body">
-      <div class="section-label push">— Chest Variations</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Hindu pushups — 3 × 8</div><div class="ex-detail">Start in downward dog (hips up), sweep your chest through in a wave motion. Chest + shoulders + flexibility. Look it up once — the movement clicks immediately.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Wide pushups — 3 × 12</div><div class="ex-detail">Bread and butter. Never drop this one.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">One-leg pushup — 3 × 8 each leg</div><div class="ex-detail">Raise one foot off the ground. Adds instability = more chest and core per rep.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Decline pushups — 3 × 10</div><div class="ex-detail">Feet on couch. Upper chest. Keep this in every week — upper chest is what gives that full rounded look.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Diamond pushups — 2 × 10</div><div class="ex-detail">Hands in diamond, elbows track back. Inner chest line + triceps.</div></div></div>
-
-      <div class="section-label abs">— Abs</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Situps — 3 × 30</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Bicycle kicks — 3 × 40</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Plank — 2 × 30–45 sec</div></div></div>
-
-      <div class="run-note"><span>🏃</span><span>Run day — moderate session so good day for a longer run.</span></div>
-      <button class="reset-btn" onclick="resetDay('d3')">↺ Reset Day</button>
-    </div>
-  </div>
-
-  <!-- DAY 5 — Volume + Max Test -->
-  <div class="day-card" id="card-d5">
-    <div class="day-header" onclick="toggleDay('d5')">
-      <div class="day-header-left"><div>
-        <div class="day-badge badge-push">Day 5 · Fri — Chest + Run</div>
-        <div class="day-title" style="margin-top:6px;">Volume + Weekly Max Test</div>
-        <div class="day-progress"><div class="progress-dots" id="dots-d5"></div><div class="progress-text" id="prog-d5"></div></div>
-      </div></div>
-      <div class="chevron">⌄</div>
-    </div>
-    <div class="day-body">
-      <div class="section-label warmup">— Grease the Groove (Through the Day)</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Every 1–2 hrs — 10–15 pushups, any variation</div><div class="ex-detail">Don't go to failure. Fresh sets spread through the day = neural strength and volume without fatigue.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Target: 80–100 total across the day</div><div class="ex-detail">Mix wide, standard, decline freely.</div></div></div>
-
-      <div class="section-label push">— Evening Finisher</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Max pushup test — 1 set</div><div class="ex-detail">Full effort, clean reps only. Log it in the Tracker. This is your weekly benchmark.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Slow eccentric pushups — 2 × 6</div><div class="ex-detail">3 sec down, even when tired. Chest growth happens here.</div></div></div>
-
-      <div class="section-label abs">— Abs</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Crunches — 3 × 40</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Hollow body hold — 3 × 25 sec</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Bicycle kicks — 3 × 50</div></div></div>
-
-      <div class="run-note"><span>🏃</span><span>Run in the morning before the groove work — keeps them separate and fresh.</span></div>
-      <button class="reset-btn" onclick="resetDay('d5')">↺ Reset Day</button>
-    </div>
-  </div>
-
-</div>
-
-<!-- ══════════════════════ UPPER DAYS VIEW ══════════════════════ -->
-<div class="view" id="view-full">
-
-  <!-- DAY 2 — Shoulders + Upper, no run -->
-  <div class="day-card" id="card-d2">
-    <div class="day-header" onclick="toggleDay('d2')">
-      <div class="day-header-left"><div>
-        <div class="day-badge badge-full">Day 2 · Tue — Upper Body</div>
-        <div class="day-title" style="margin-top:6px;">Shoulders + Chest + Arms</div>
-        <div class="day-progress"><div class="progress-dots" id="dots-d2"></div><div class="progress-text" id="prog-d2"></div></div>
-      </div></div>
-      <div class="chevron">⌄</div>
-    </div>
-    <div class="day-body">
-      <div class="section-label shoulder">— Shoulder Work (V-Shape Priority)</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Pike position hold — 3 × 15 sec</div><div class="ex-detail">Hips high in a V, arms straight, hold. Builds the shoulder stability you need before doing the full movement. Easier entry point.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Pike pushups — 3 × 3–5 reps</div><div class="ex-detail">Low reps, full control. Slowly lower head toward floor, push back up. This is hard — 3 clean reps beats 8 ugly ones. Gets easier each week.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Wall handstand hold — 2 × 10–15 sec</div><div class="ex-detail">Back against wall, kick up, hold. Just building comfort in the position. Short holds are totally fine right now.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Shoulder tap plank — 3 × 16 taps</div><div class="ex-detail">Plank, alternate shoulder taps without rocking. Front delt + core stability.</div></div></div>
-
-      <div class="section-label full">— Chest + Arms</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Wide pushups — 3 × 12</div><div class="ex-detail">Chest stays in every session, every day.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Close grip pushups — 3 × 10</div><div class="ex-detail">Hands close, elbows track back along your sides. Triceps and inner chest.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Tricep extension pushup — 2 × 8</div><div class="ex-detail">Start in plank, lower both forearms to the ground, then push back up. Pure tricep isolation.</div></div></div>
-
-      <div class="section-label abs">— Abs</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Situps — 3 × 30</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Side plank — 2 × 20 sec each side</div><div class="ex-detail">Obliques. Important for the carved waist look.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Leg raises — 2 × 12</div></div></div>
-
-      <div class="run-note"><span>🚶</span><span>No run today — heavier session. Light walk is enough.</span></div>
-      <button class="reset-btn" onclick="resetDay('d2')">↺ Reset Day</button>
-    </div>
-  </div>
-
-  <!-- DAY 4 — Full Upper + Run -->
-  <div class="day-card" id="card-d4">
-    <div class="day-header" onclick="toggleDay('d4')">
-      <div class="day-header-left"><div>
-        <div class="day-badge badge-full">Day 4 · Thu — Upper + Run</div>
-        <div class="day-title" style="margin-top:6px;">Full Upper + Progressions</div>
-        <div class="day-progress"><div class="progress-dots" id="dots-d4"></div><div class="progress-text" id="prog-d4"></div></div>
-      </div></div>
-      <div class="chevron">⌄</div>
-    </div>
-    <div class="day-body">
-      <div class="section-label shoulder">— Shoulder Progression</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Pike pushups — 3 × 4–6 reps</div><div class="ex-detail">Try to beat Day 2. Add 1 rep when you can do all 3 sets cleanly.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Wall handstand hold — 2 × 15–20 sec</div><div class="ex-detail">Longer than Day 2. Just stacking time in position.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Archer pushup — 1 × 3–5 each side</div><div class="ex-detail">Goal exercise. Very wide stance, shift weight to one arm, do a slow pushup on that side. Just a few reps. Don't force it — this is a long-term build.</div></div></div>
-
-      <div class="section-label full">— Chest + Arms</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Wide pushups — 3 × 12–15</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Decline pushups — 3 × 10</div><div class="ex-detail">Feet on couch. Upper chest every week without fail.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Diamond pushups — 3 × 10–12</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Hindu pushups — 2 × 8</div><div class="ex-detail">Flowing sweep motion. Full chest + shoulders + flexibility in one move.</div></div></div>
-
-      <div class="section-label abs">— Abs</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Crunches — 3 × 40</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Bicycle kicks — 3 × 50</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Side plank — 2 × 25 sec each</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Leg raises — 2 × 15</div></div></div>
-
-      <div class="run-note"><span>🏃</span><span>Run day — medium distance, comfortable pace. Do it before or after.</span></div>
-      <button class="reset-btn" onclick="resetDay('d4')">↺ Reset Day</button>
-    </div>
-  </div>
-
-</div>
+<div class="view" id="view-push"></div>
+<div class="view" id="view-pull"></div>
 
 <!-- ══════════════════════ TRACKER VIEW ══════════════════════ -->
 <div class="view" id="view-tracker">
   <div class="tracker-header">
-    <div class="tracker-title">Max Pushup Tracker</div>
-    <div class="tracker-sub">Log your weekly max. Watch yourself get stronger.</div>
+    <div class="tracker-title">Progress Tracker</div>
+    <div class="tracker-sub">Log your benchmarks. Watch yourself get stronger.</div>
   </div>
 
-  <div class="stat-row">
-    <div class="stat-card gold">
-      <div class="stat-label">Personal Best</div>
-      <div class="stat-value" id="stat-pb">—</div>
-      <div class="stat-sub">consecutive reps</div>
+  <div class="track-tabs">
+    <div class="track-tab active" data-pane="pushups" onclick="showTrackPane('pushups')">Pushups</div>
+    <div class="track-tab" data-pane="pullups" onclick="showTrackPane('pullups')">Pull-ups</div>
+    <div class="track-tab" data-pane="hang" onclick="showTrackPane('hang')">Hang</div>
+    <div class="track-tab" data-pane="cardio" onclick="showTrackPane('cardio')">Cardio</div>
+  </div>
+
+  <!-- PUSHUPS PANE -->
+  <div class="track-pane active" id="pane-pushups">
+    <div class="stat-row">
+      <div class="stat-card gold">
+        <div class="stat-label">Personal Best</div>
+        <div class="stat-value" id="pb-pushups">—</div>
+        <div class="stat-sub">consecutive reps</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Latest</div>
+        <div class="stat-value green" id="latest-pushups">—</div>
+        <div class="stat-sub" id="latest-pushups-week">no entries yet</div>
+      </div>
     </div>
-    <div class="stat-card">
-      <div class="stat-label">Latest</div>
-      <div class="stat-value green" id="stat-latest">—</div>
-      <div class="stat-sub" id="stat-latest-week">no entries yet</div>
+    <div class="log-section">
+      <div class="log-title">LOG MAX PUSHUPS</div>
+      <div class="log-input-row">
+        <input class="log-input" type="number" id="input-pushups" placeholder="0" min="1" max="300">
+        <button class="log-btn" onclick="logMetric('pushups')">LOG IT</button>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">Progress</div>
+      <div class="chart-area" id="chart-pushups"><div class="chart-empty">Log your first session to see progress</div></div>
+    </div>
+    <div class="log-section">
+      <div class="log-title">HISTORY</div>
+      <div id="history-pushups"><div style="font-size:12px;color:var(--muted);">No entries yet.</div></div>
     </div>
   </div>
 
-  <div class="log-section">
-    <div class="log-title">LOG THIS WEEK'S MAX</div>
-    <div class="log-input-row">
-      <input class="log-input" type="number" id="repInput" placeholder="0" min="1" max="200">
-      <button class="log-btn" onclick="logReps()">LOG IT</button>
+  <!-- PULLUPS PANE -->
+  <div class="track-pane" id="pane-pullups">
+    <div class="stat-row">
+      <div class="stat-card gold">
+        <div class="stat-label">Personal Best</div>
+        <div class="stat-value" id="pb-pullups">—</div>
+        <div class="stat-sub">consecutive reps</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Latest</div>
+        <div class="stat-value green" id="latest-pullups">—</div>
+        <div class="stat-sub" id="latest-pullups-week">no entries yet</div>
+      </div>
+    </div>
+    <div class="log-section">
+      <div class="log-title">LOG MAX PULL-UPS</div>
+      <div class="log-input-row">
+        <input class="log-input" type="number" id="input-pullups" placeholder="0" min="1" max="100">
+        <button class="log-btn" onclick="logMetric('pullups')">LOG IT</button>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">Progress</div>
+      <div class="chart-area" id="chart-pullups"><div class="chart-empty">Log your first session to see progress</div></div>
+    </div>
+    <div class="log-section">
+      <div class="log-title">HISTORY</div>
+      <div id="history-pullups"><div style="font-size:12px;color:var(--muted);">No entries yet.</div></div>
     </div>
   </div>
 
-  <div class="chart-wrap">
-    <div class="chart-title">Progress Chart</div>
-    <div class="chart-area" id="chartArea">
-      <div class="chart-empty">Log your first session to see progress</div>
+  <!-- HANG PANE -->
+  <div class="track-pane" id="pane-hang">
+    <div class="stat-row">
+      <div class="stat-card gold">
+        <div class="stat-label">Personal Best</div>
+        <div class="stat-value" id="pb-hang">—</div>
+        <div class="stat-sub">seconds</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Latest</div>
+        <div class="stat-value green" id="latest-hang">—</div>
+        <div class="stat-sub" id="latest-hang-week">no entries yet</div>
+      </div>
+    </div>
+    <div class="log-section">
+      <div class="log-title">LOG MAX DEAD HANG (sec)</div>
+      <div class="log-input-row">
+        <input class="log-input" type="number" id="input-hang" placeholder="0" min="1" max="600">
+        <button class="log-btn" onclick="logMetric('hang')">LOG IT</button>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">Progress</div>
+      <div class="chart-area" id="chart-hang"><div class="chart-empty">Log your first session to see progress</div></div>
+    </div>
+    <div class="log-section">
+      <div class="log-title">HISTORY</div>
+      <div id="history-hang"><div style="font-size:12px;color:var(--muted);">No entries yet.</div></div>
     </div>
   </div>
 
-  <div class="log-section">
-    <div class="log-title">HISTORY</div>
-    <div id="historyList"><div style="font-size:12px;color:var(--muted);">No entries yet.</div></div>
+  <!-- CARDIO PANE -->
+  <div class="track-pane" id="pane-cardio">
+    <div class="stat-row">
+      <div class="stat-card gold">
+        <div class="stat-label">This Week</div>
+        <div class="stat-value" id="cardio-week-min">0</div>
+        <div class="stat-sub">total minutes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Sessions</div>
+        <div class="stat-value green" id="cardio-week-count">0</div>
+        <div class="stat-sub">this week</div>
+      </div>
+    </div>
+    <div class="log-section">
+      <div class="log-title" style="color: var(--hiit);">LOG CARDIO SESSION</div>
+      <div class="cardio-types" id="cardioTypes">
+        <button class="cardio-type-btn selected" data-type="HIIT">HIIT</button>
+        <button class="cardio-type-btn" data-type="Run">Run</button>
+        <button class="cardio-type-btn" data-type="Range">Range</button>
+        <button class="cardio-type-btn" data-type="Walk">Walk</button>
+        <button class="cardio-type-btn" data-type="Bike">Bike</button>
+        <button class="cardio-type-btn" data-type="Other">Other</button>
+      </div>
+      <div class="cardio-input-grid">
+        <input type="number" id="cardio-min" placeholder="minutes" min="1" max="300">
+        <input type="number" id="cardio-dist" placeholder="km (optional)" min="0" step="0.1">
+      </div>
+      <button class="cardio-log-btn" onclick="logCardio()">LOG SESSION</button>
+    </div>
+    <div class="log-section">
+      <div class="log-title">HISTORY</div>
+      <div id="history-cardio"><div style="font-size:12px;color:var(--muted);">No entries yet.</div></div>
+    </div>
   </div>
 </div>
 
-<!-- ══════════════════════ NUTRITION VIEW ══════════════════════ -->
-<div class="view" id="view-nutrition">
-  <div class="nutrition-view-header">
-    <div class="nutrition-view-title">Daily Nutrition</div>
-    <div class="nutrition-view-sub">Hit protein every meal. Everything else follows.</div>
-  </div>
-
-  <!-- WATER TRACKER -->
-  <div class="water-card">
-    <div class="water-title">💧 Water Today</div>
-    <div class="water-glasses" id="waterGlasses"></div>
-    <div class="water-count">
-      <span id="waterCount">0</span> / 8 glasses &nbsp;·&nbsp; target 2–3L
-    </div>
-  </div>
-
-  <!-- CHEAT MEAL TRACKER -->
-  <div class="cheat-card">
-    <div class="cheat-title">🍕 Cheat Meals This Week</div>
-    <div class="cheat-sub">2 per week is totally fine. Don't let it become 2 per day.</div>
-    <div class="cheat-circles" id="cheatCircles"></div>
-    <div class="cheat-status" id="cheatStatus"></div>
-    <button class="reset-btn" style="margin-top:10px;" onclick="resetCheats()">↺ Reset Week</button>
-  </div>
-
-  <!-- MEALS -->
-  <div style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;padding:6px 0 10px;">— Daily Meal Template</div>
-
-  <div class="meal-card" id="meal-morning">
-    <div class="meal-header" onclick="toggleMeal('morning')">
-      <div class="meal-header-left">
-        <div class="meal-emoji">🍳</div>
-        <div>
-          <div class="meal-time">Morning</div>
-          <div class="meal-name">Breakfast</div>
-        </div>
-      </div>
-      <div class="chevron">⌄</div>
-    </div>
-    <div class="meal-body">
-      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">3 egg + mozza omelet</div><div class="meal-item-note">Throw spinach in if you can. ~24g protein.</div></div></div>
-      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Plain skyr</div><div class="meal-item-note">Side or after. Add berries if you have them. ~17g protein.</div></div></div>
-    </div>
-  </div>
-
-  <div class="meal-card" id="meal-lunch">
-    <div class="meal-header" onclick="toggleMeal('lunch')">
-      <div class="meal-header-left">
-        <div class="meal-emoji">🐟</div>
-        <div>
-          <div class="meal-time">Mid-Day</div>
-          <div class="meal-name">Lunch</div>
-        </div>
-      </div>
-      <div class="chevron">⌄</div>
-    </div>
-    <div class="meal-body">
-      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Canned tuna or smoked salmon</div><div class="meal-item-note">With crackers or on toast. ~25g protein.</div></div></div>
-      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Or second skyr</div><div class="meal-item-note">Fine on lighter days — keep the protein up.</div></div></div>
-    </div>
-  </div>
-
-  <div class="meal-card" id="meal-dinner">
-    <div class="meal-header" onclick="toggleMeal('dinner')">
-      <div class="meal-header-left">
-        <div class="meal-emoji">🍽️</div>
-        <div>
-          <div class="meal-time">Evening</div>
-          <div class="meal-name">Dinner</div>
-        </div>
-      </div>
-      <div class="chevron">⌄</div>
-    </div>
-    <div class="meal-body">
-      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Fresh Prep meal</div><div class="meal-item-note">You're good here. Make sure there's a protein source in it. ~25–35g protein.</div></div></div>
-    </div>
-  </div>
-
-  <div class="meal-card" id="meal-snack">
-    <div class="meal-header" onclick="toggleMeal('snack')">
-      <div class="meal-header-left">
-        <div class="meal-emoji">🧀</div>
-        <div>
-          <div class="meal-time">Night Snack — Rotate</div>
-          <div class="meal-name">Before Bed</div>
-        </div>
-      </div>
-      <div class="chevron">⌄</div>
-    </div>
-    <div class="meal-body">
-      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Smoked salmon + Balderson cheddar</div><div class="meal-item-note">Protein + fat. Ideal before bed.</div></div></div>
-      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Cheddar + hard boiled egg</div><div class="meal-item-note">Simple, filling, high protein.</div></div></div>
-      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Skyr with honey</div><div class="meal-item-note">Slow-digesting casein. Great for overnight muscle repair.</div></div></div>
-      <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Sausage + cheddar</div><div class="meal-item-note">Keep to 3–4 nights a week rather than every night (sodium).</div></div></div>
-    </div>
-  </div>
-
-  <!-- PROTEIN QUICK REF -->
-  <div class="protein-card">
-    <div class="protein-title">💪 Protein Quick Ref</div>
-    <div class="protein-header-row">
-      <span style="flex:1;">Food</span>
-      <span style="flex:1;text-align:center;">Serving</span>
-      <span style="min-width:44px;text-align:right;">Protein</span>
-    </div>
-    <div class="protein-row"><span class="protein-food">Egg + mozza omelet</span><span class="protein-serving">3 eggs</span><span class="protein-amount">~24g</span></div>
-    <div class="protein-row"><span class="protein-food">Plain skyr</span><span class="protein-serving">3/4 cup</span><span class="protein-amount">~17g</span></div>
-    <div class="protein-row"><span class="protein-food">Canned tuna/salmon</span><span class="protein-serving">1 can</span><span class="protein-amount">~25g</span></div>
-    <div class="protein-row"><span class="protein-food">Smoked salmon</span><span class="protein-serving">75g</span><span class="protein-amount">~15g</span></div>
-    <div class="protein-row"><span class="protein-food">Balderson cheddar</span><span class="protein-serving">2 slices</span><span class="protein-amount">~10g</span></div>
-    <div class="protein-row"><span class="protein-food">Cottage cheese</span><span class="protein-serving">1 cup</span><span class="protein-amount">~25g</span></div>
-    <div class="protein-row"><span class="protein-food">Greek yogurt (2%)</span><span class="protein-serving">3/4 cup</span><span class="protein-amount">~17g</span></div>
-    <div class="protein-row"><span class="protein-food">Chicken breast</span><span class="protein-serving">100g</span><span class="protein-amount">~31g</span></div>
-    <div class="protein-row"><span class="protein-food">Turkey slices (deli)</span><span class="protein-serving">4 slices</span><span class="protein-amount">~14g</span></div>
-    <div class="protein-row"><span class="protein-food">Hard boiled eggs</span><span class="protein-serving">2 eggs</span><span class="protein-amount">~12g</span></div>
-    <div class="protein-row"><span class="protein-food">Fresh Prep meal</span><span class="protein-serving">1 meal</span><span class="protein-amount">~30g</span></div>
-    <div class="protein-row"><span class="protein-food">Pork sausage (dry)</span><span class="protein-serving">2 pieces</span><span class="protein-amount">~12g</span></div>
-    <div class="protein-row"><span class="protein-food">Chia pudding (skyr)</span><span class="protein-serving">1 bowl</span><span class="protein-amount">~18g</span></div>
-    <div class="protein-row"><span class="protein-food">Pumpkin seeds</span><span class="protein-serving">1/4 cup</span><span class="protein-amount">~9g</span></div>
-    <div class="protein-row"><span class="protein-food">Steel cut oatmeal</span><span class="protein-serving">1 cup cooked</span><span class="protein-amount">~6g</span></div>
-    <div class="protein-row"><span class="protein-food">Edamame</span><span class="protein-serving">1/2 cup</span><span class="protein-amount">~9g</span></div>
-    <div class="protein-row"><span class="protein-food">Beef jerky</span><span class="protein-serving">30g</span><span class="protein-amount">~10g</span></div>
-  </div>
-
-  <!-- EASY MEAL IDEAS -->
-  <div class="protein-card">
-    <div class="protein-title">🍴 Easy High-Protein Meal Ideas</div>
-    <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Skyr chia pudding</div><div class="meal-item-note">Mix skyr + chia seeds + a splash of milk the night before. Add berries. ~20g protein, zero effort.</div></div></div>
-    <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Salmon + rice</div><div class="meal-item-note">Canned salmon, rice, a bit of soy or lemon. Fast, lean, filling. ~30g protein.</div></div></div>
-    <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Egg white + whole egg omelet</div><div class="meal-item-note">2 whole eggs + 2 whites. More protein, less fat. Add mozza and spinach.</div></div></div>
-    <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Cottage cheese bowl</div><div class="meal-item-note">Cottage cheese + pumpkin seeds + a drizzle of hot sauce. ~28g protein, great snack or lunch.</div></div></div>
-    <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Turkey + avocado wrap</div><div class="meal-item-note">Deli turkey, avocado, cheddar in a tortilla. Protein + healthy fat. ~25g.</div></div></div>
-    <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Greek yogurt parfait</div><div class="meal-item-note">Layer Greek yogurt, berries, a handful of oats. Easy breakfast swap for variety. ~20g.</div></div></div>
-    <div class="meal-item"><div class="meal-dot"></div><div class="meal-item-text"><div class="meal-item-name">Hard boiled eggs + cheddar</div><div class="meal-item-note">Prep 4–6 eggs Sunday, eat them all week. Easiest snack ever. ~14g for 2 eggs + cheese.</div></div></div>
-  </div>
-
-  <!-- RULES -->
-  <div class="water-card" style="margin-bottom:10px;">
-    <div class="water-title" style="color:var(--gold);">⚡ The Rules</div>
-    <div class="meal-item" style="padding:8px 0;border-bottom:1px solid var(--border);"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">Hit protein every meal</div><div class="meal-item-note">Target 0.7–1g per lb of bodyweight daily</div></div></div>
-    <div class="meal-item" style="padding:8px 0;border-bottom:1px solid var(--border);"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">Don't skip the night snack</div><div class="meal-item-note">Casein before bed = muscle repair while you sleep</div></div></div>
-    <div class="meal-item" style="padding:8px 0;border-bottom:1px solid var(--border);"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">Cheat meals not cheat days</div><div class="meal-item-note">2 per week is built in. Don't snowball.</div></div></div>
-    <div class="meal-item" style="padding:8px 0;"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">Eat enough total calories</div><div class="meal-item-note">Under-eating fights muscle growth. Don't fear food.</div></div></div>
-  </div>
-
-</div>
-
-<!-- ══════════════════════ RECOVERY VIEW ══════════════════════ -->
+<!-- ══════════════════════ REST VIEW ══════════════════════ -->
 <div class="view" id="view-rest">
-  <div class="nutrition-view-header">
-    <div class="nutrition-view-title">Weekend Recovery</div>
-    <div class="nutrition-view-sub">Sat + Sun — this is where the gains actually happen.</div>
-  </div>
-
-  <div class="water-card" style="margin-bottom:10px;">
-    <div class="water-title" style="color:var(--full);">Why Recovery Matters</div>
-    <div style="font-size:12px;color:var(--muted);line-height:1.7;">Muscle is built during rest, not training. Two full days of recovery means you come back Monday stronger. Don't skip this — it's part of the program.</div>
-  </div>
-
-  <!-- SAT RECOVERY -->
-  <div class="meal-card" id="meal-sat">
-    <div class="meal-header" onclick="toggleMeal('sat')">
-      <div class="meal-header-left">
-        <div class="meal-emoji">🧘</div>
-        <div>
-          <div class="meal-time">Saturday</div>
-          <div class="meal-name">Active Recovery + Stretch</div>
-        </div>
-      </div>
-      <div class="chevron">⌄</div>
+  <div class="rest-view">
+    <div class="rest-icon">🌙</div>
+    <div class="rest-big">REST DAY</div>
+    <div class="rest-text">Muscle grows during recovery, not during the workout. Walk, stretch, eat your protein, hydrate. That's it. You've earned this.</div>
+    <br><br>
+    <div class="rest-text" style="font-size:12px; color: var(--muted);">
+      <strong style="color:var(--text);">Today's checklist:</strong><br><br>
+      ✓ Hit protein at every meal<br>
+      ✓ Drink 2–3L of water<br>
+      ✓ Light walk if you want to move<br>
+      ✓ Sleep 7–9 hrs tonight
     </div>
-    <div class="meal-body">
-      <div class="section-label full" style="margin-bottom:8px;">— Morning Stretch (10–15 min)</div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Chest opener stretch — 3 × 30 sec</div><div class="ex-detail">Clasp hands behind your back, squeeze shoulder blades, lift chest. Counteracts all the pushing work.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Doorway chest stretch — 2 × 30 sec each side</div><div class="ex-detail">Arm at 90 degrees on a doorframe, lean through gently. Best stretch for building pec flexibility = better range of motion = more growth.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Child's pose — 2 × 45 sec</div><div class="ex-detail">Hips back to heels, arms extended forward. Back and shoulder decompression.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Shoulder cross-body stretch — 2 × 20 sec each</div><div class="ex-detail">Pull one arm across your chest. Rear delt and shoulder mobility.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Cat-cow — 10 reps</div><div class="ex-detail">On all fours, alternate arching and rounding your back. Spine health.</div></div></div>
-      <div class="ex-item" onclick="toggleEx(this)"><div class="ex-check">✓</div><div class="ex-text"><div class="ex-name">Hip flexor lunge stretch — 2 × 30 sec each side</div><div class="ex-detail">Low lunge, back knee on floor, push hips forward. Important for posture and how you carry yourself.</div></div></div>
-      <div class="section-label warmup" style="margin-top:10px;margin-bottom:8px;">— Rest of the Day</div>
-      <div class="meal-item"><div class="meal-dot" style="background:var(--full);"></div><div class="meal-item-text"><div class="meal-item-name">Light walk — 20–30 min if you want to move</div><div class="meal-item-note">Keep it easy. No running today.</div></div></div>
-      <div class="meal-item"><div class="meal-dot" style="background:var(--full);"></div><div class="meal-item-text"><div class="meal-item-name">Hit your protein as normal</div><div class="meal-item-note">Recovery still needs fuel. Don't undereat on rest days.</div></div></div>
-      <div class="meal-item"><div class="meal-dot" style="background:var(--full);"></div><div class="meal-item-text"><div class="meal-item-name">Hydrate well — 2–3L</div></div></div>
-    </div>
-  </div>
-
-  <!-- SUN FULL REST -->
-  <div class="meal-card" id="meal-sun">
-    <div class="meal-header" onclick="toggleMeal('sun')">
-      <div class="meal-header-left">
-        <div class="meal-emoji">🌙</div>
-        <div>
-          <div class="meal-time">Sunday</div>
-          <div class="meal-name">Full Rest Day</div>
-        </div>
-      </div>
-      <div class="chevron">⌄</div>
-    </div>
-    <div class="meal-body">
-      <div class="meal-item"><div class="meal-dot" style="background:var(--muted);"></div><div class="meal-item-text"><div class="meal-item-name">No training. No running.</div><div class="meal-item-note">Your body is rebuilding. Let it.</div></div></div>
-      <div class="meal-item"><div class="meal-dot" style="background:var(--muted);"></div><div class="meal-item-text"><div class="meal-item-name">Optional: 5 min chest stretch</div><div class="meal-item-note">Doorway stretch if you feel tight. That's it.</div></div></div>
-      <div class="meal-item"><div class="meal-dot" style="background:var(--muted);"></div><div class="meal-item-text"><div class="meal-item-name">Eat well, sleep 7–9 hrs tonight</div><div class="meal-item-note">Monday you come back stronger. That's the whole point.</div></div></div>
-      <div class="meal-item"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">Cheat meal if you want one</div><div class="meal-item-note">Sunday is a great day for it. Enjoy it without guilt.</div></div></div>
-    </div>
-  </div>
-
-  <div class="water-card" style="margin-bottom:10px;margin-top:4px;">
-    <div class="water-title" style="color:var(--gold);">Weekend Checklist</div>
-    <div class="meal-item" style="padding:8px 0;border-bottom:1px solid var(--border);"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">Sat morning stretch — 10–15 min</div></div></div>
-    <div class="meal-item" style="padding:8px 0;border-bottom:1px solid var(--border);"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">Protein every meal both days</div></div></div>
-    <div class="meal-item" style="padding:8px 0;border-bottom:1px solid var(--border);"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">2–3L water daily</div></div></div>
-    <div class="meal-item" style="padding:8px 0;"><div class="meal-dot" style="background:var(--gold);"></div><div class="meal-item-text"><div class="meal-item-name">Sleep well Sunday night — Monday is Day 1 again</div></div></div>
   </div>
 </div>
 
@@ -1126,19 +859,15 @@
 <div class="bottom-nav">
   <button class="bnav-btn" id="bnav-push" onclick="showView('push')">
     <span class="icon">💪</span>
-    <span class="label">Chest</span>
+    <span class="label">Push</span>
   </button>
-  <button class="bnav-btn" id="bnav-full" onclick="showView('full')">
-    <span class="icon">🏛️</span>
-    <span class="label">Upper</span>
+  <button class="bnav-btn" id="bnav-pull" onclick="showView('pull')">
+    <span class="icon">🤸</span>
+    <span class="label">Pull</span>
   </button>
   <button class="bnav-btn" id="bnav-tracker" onclick="showView('tracker')">
     <span class="icon">📈</span>
     <span class="label">Tracker</span>
-  </button>
-  <button class="bnav-btn" id="bnav-nutrition" onclick="showView('nutrition')">
-    <span class="icon">🥗</span>
-    <span class="label">Food</span>
   </button>
   <button class="bnav-btn" id="bnav-rest" onclick="showView('rest')">
     <span class="icon">🌙</span>
@@ -1146,179 +875,514 @@
   </button>
 </div>
 
+<!-- REST TIMER -->
+<div class="rest-timer" id="restTimer">
+  <div class="rest-timer-info">
+    <div class="rest-timer-label">Rest</div>
+    <div class="rest-timer-count" id="restCount">1:30</div>
+  </div>
+  <div class="rest-timer-actions">
+    <button class="rest-timer-btn" onclick="addRest(30)">+30s</button>
+    <button class="rest-timer-btn primary" onclick="dismissTimer()">SKIP</button>
+  </div>
+</div>
+
+<!-- CARDIO MODAL -->
+<div class="modal-backdrop" id="cardioModal" onclick="if(event.target===this)closeCardioModal()">
+  <div class="modal">
+    <div class="modal-title">QUICK LOG CARDIO</div>
+    <div class="cardio-types" id="cardioTypesModal">
+      <button class="cardio-type-btn selected" data-type="HIIT">HIIT</button>
+      <button class="cardio-type-btn" data-type="Run">Run</button>
+      <button class="cardio-type-btn" data-type="Range">Range</button>
+      <button class="cardio-type-btn" data-type="Walk">Walk</button>
+      <button class="cardio-type-btn" data-type="Bike">Bike</button>
+      <button class="cardio-type-btn" data-type="Other">Other</button>
+    </div>
+    <div class="cardio-input-grid">
+      <input type="number" id="modal-min" placeholder="minutes" min="1" max="300">
+      <input type="number" id="modal-dist" placeholder="km (optional)" min="0" step="0.1">
+    </div>
+    <button class="cardio-log-btn" onclick="logCardioFromModal()">LOG SESSION</button>
+    <button class="rest-timer-btn" style="margin-top:10px;width:100%;" onclick="closeCardioModal()">CANCEL</button>
+  </div>
+</div>
+
 <script>
-// ── State ──
-const STORAGE_KEY = 'workout_state_v1';
-const REPS_KEY = 'pushup_log_v1';
-const WATER_KEY = 'water_v1';
-const CHEAT_KEY = 'cheat_v1';
+// ══════════════════════ PROGRAM DATA ══════════════════════
+const PROGRAM = {
+  d1: {
+    badge: 'Day 1 · Push',
+    badgeClass: 'badge-push',
+    title: 'Chest & Triceps',
+    sections: [
+      { label: 'Warm Up (5 min)', accent: 'warmup', exercises: [
+        { name: 'Arm circles · 30 sec each direction', sets: 1 },
+        { name: 'Walkout to plank · 5 reps', detail: 'Walk hands out, hold briefly, walk back.', sets: 1 },
+        { name: 'Shoulder rotations · 10 each arm', sets: 1 },
+      ]},
+      { label: 'Chest & Triceps', accent: 'push', exercises: [
+        { name: 'Wide pushups · to near failure', detail: 'Hands wider than shoulders. Squeezes the chest harder.', sets: 3 },
+        { name: 'Pseudo planche pushups · 6–10', detail: 'Hands at hip level, fingers pointing back, lean forward. Shoulders + chest. Hard.', sets: 3 },
+        { name: 'Diamond pushups · 12–15', detail: 'Hands in diamond. Triceps and inner chest.', sets: 3 },
+        { name: 'Deficit decline pushups · 8–12', detail: 'Feet on couch, hands on books. Deeper ROM = more chest stretch.', sets: 3 },
+        { name: 'Archer pushups · 6–8 each side', detail: 'One arm extended wide, other arm does the work. Path to one-arm pushup.', sets: 2 },
+        { name: 'Plyometric pushups · 5–8', detail: 'Explosive. Push hard enough to leave the floor.', sets: 2 },
+      ]},
+      { label: 'Abs', accent: 'abs', exercises: [
+        { name: 'Crunches · 30–40', sets: 3 },
+        { name: 'Bicycle kicks · 40', sets: 3 },
+        { name: 'Hollow body hold · 20–30 sec', detail: 'Lower back pressed into floor, arms overhead, legs raised.', sets: 3 },
+        { name: 'Leg raises · 15', sets: 2 },
+      ]},
+    ],
+    cardio: 'HIIT or range optional. Add it after this session or later in the day.'
+  },
+
+  d2: {
+    badge: 'Day 2 · Pull',
+    badgeClass: 'badge-pull',
+    title: 'Pull & Posture',
+    sections: [
+      { label: 'Warm Up', accent: 'warmup', exercises: [
+        { name: 'Dead hang · 30 sec', detail: 'Hang from the bar with shoulders engaged. Decompresses spine, opens shoulders.', sets: 1 },
+        { name: 'Scapular pulls · 8', detail: 'Hang from bar. Pull shoulder blades DOWN without bending arms. Activates the lats.', sets: 2 },
+        { name: 'Arm circles · 30 sec each direction', sets: 1 },
+      ]},
+      { label: 'Pull Progression (Priority)', accent: 'pull', exercises: [
+        { name: 'Pull-up negatives · 3–5 reps', detail: 'Jump or step to top position. Lower yourself for 5 seconds. Builds strength fast.', sets: 3 },
+        { name: 'Pull-ups · max (aim 2–5)', detail: 'Strict form. Chin over bar. Log your best set in the Tracker.', sets: 3 },
+        { name: 'Chin-ups · 5–8', detail: 'Underhand grip. Easier than pull-ups, hits biceps harder.', sets: 3 },
+        { name: 'Bodyweight rows · 10–15', detail: 'Under a sturdy table. Body straight, pull chest to edge. Use this until bar is up.', sets: 3 },
+      ]},
+      { label: 'Posture Work', accent: 'pull', exercises: [
+        { name: 'YTW raises (prone) · 8 each letter', detail: 'Face down. Raise arms in Y, then T, then W. Rear delts + mid-traps. The anti-slouch move.', sets: 3 },
+        { name: 'Superman hold · 20–30 sec', detail: 'Face down, lift arms and legs. Lower back.', sets: 3 },
+        { name: 'Reverse snow angels · 10', detail: 'Face down. Sweep arms from sides to overhead, palms up. Mid-back + rear delts.', sets: 3 },
+      ]},
+      { label: 'Light Push', accent: 'push', exercises: [
+        { name: 'Standard pushups · 12–15', detail: 'Controlled tempo, full ROM.', sets: 3 },
+        { name: 'Hindu pushups · 8', detail: 'Flow from downward dog into a sweeping pushup. Mobility + chest.', sets: 2 },
+      ]},
+      { label: 'Abs', accent: 'abs', exercises: [
+        { name: 'Situps · 30–40', sets: 3 },
+        { name: 'Bicycle kicks · 40', sets: 3 },
+        { name: 'Side plank · 20–30 sec each side', detail: 'Obliques. Carved waist.', sets: 2 },
+      ]},
+    ],
+    cardio: 'Great HIIT day. 8–10 min if you go for it.'
+  },
+
+  d3: {
+    badge: 'Day 3 · Push',
+    badgeClass: 'badge-push',
+    title: 'Chest Variations',
+    sections: [
+      { label: 'Main Session', accent: 'push', exercises: [
+        { name: 'Incline pushups · 15', detail: 'Hands elevated on couch. Warmup, hits lower chest.', sets: 2 },
+        { name: 'Pseudo planche pushups · 6–10', detail: 'Hands at hip level, fingers back, lean forward. Crushes shoulders + chest.', sets: 3 },
+        { name: 'Standard pushups · max', detail: 'Go to failure. Note your number.', sets: 3 },
+        { name: 'Slow eccentric pushups · 8', detail: '4 seconds down, explode up. Time under tension = growth.', sets: 3 },
+        { name: 'Offset pushup · 8 each side', detail: 'One hand slightly forward. Unilateral chest activation.', sets: 3 },
+        { name: '3-second pause pushups · 8', detail: 'Pause 3 sec at the bottom (chest near floor). Brutal.', sets: 3 },
+      ]},
+      { label: 'Abs', accent: 'abs', exercises: [
+        { name: 'Crunches · 40', sets: 3 },
+        { name: 'Hollow body hold · 30 sec', sets: 3 },
+        { name: 'Bicycle kicks · 50', sets: 3 },
+        { name: 'Plank · 45 sec', sets: 2 },
+      ]},
+    ],
+    cardio: 'HIIT or range optional. Keep it under 10 min if you do it.'
+  },
+
+  d4: {
+    badge: 'Day 4 · Pull',
+    badgeClass: 'badge-pull',
+    title: 'Pull Volume',
+    sections: [
+      { label: 'Warm Up', accent: 'warmup', exercises: [
+        { name: 'Dead hang · 30–45 sec', sets: 3 },
+        { name: 'Scapular pulls · 10', sets: 2 },
+      ]},
+      { label: 'Pull Volume', accent: 'pull', exercises: [
+        { name: 'Pull-ups · max', detail: 'Try to beat Day 2 total reps. Strict form.', sets: 4 },
+        { name: 'Chin-ups · max', detail: 'Biceps focused.', sets: 3 },
+        { name: 'Archer rows · 6–8 each side', detail: 'Under table. One arm does most of the work, other guides. Path to one-arm row.', sets: 3 },
+        { name: 'Wide-grip pull-ups · max', detail: 'Wider than shoulders. More lat width. Sub negatives if too hard.', sets: 2 },
+      ]},
+      { label: 'Posture', accent: 'pull', exercises: [
+        { name: 'YTW raises · 10 each letter', sets: 3 },
+        { name: 'Reverse snow angels · 12', sets: 3 },
+        { name: 'Superman with arm sweep · 30 sec', detail: 'Hold Y position, sweep arms back to W and return.', sets: 3 },
+      ]},
+      { label: 'Light Push', accent: 'push', exercises: [
+        { name: 'Pike pushups · 10–12', detail: 'Keep shoulder work going every session.', sets: 3 },
+      ]},
+      { label: 'Abs', accent: 'abs', exercises: [
+        { name: 'Hanging knee raises · 10–15', detail: 'Hang from bar, raise knees to chest. Crushes lower abs.', sets: 3 },
+        { name: 'Leg raises (floor) · 15', sets: 3 },
+        { name: 'Side plank · 30 sec each', sets: 2 },
+        { name: 'Bicycle kicks · 50', sets: 3 },
+      ]},
+    ],
+    cardio: 'Great HIIT or range day.'
+  },
+
+  d5: {
+    badge: 'Day 5 · Push',
+    badgeClass: 'badge-push',
+    title: 'Power & Volume',
+    sections: [
+      { label: 'Grease the Groove (Through the Day)', accent: 'warmup', exercises: [
+        { name: 'Every 1–2 hrs · 10–15 pushups', detail: "Any variation. Don't go to failure. Fresh sets build neural strength.", sets: 1 },
+        { name: 'Target: 80–100 total across the day', detail: 'Mix wide, standard, diamond, pseudo planche.', sets: 1 },
+      ]},
+      { label: 'Evening Session', accent: 'push', exercises: [
+        { name: 'Plyometric pushups · 8', detail: 'Explosive power. The athletic look.', sets: 3 },
+        { name: 'Pseudo planche pushups · 6–10', detail: 'Hands at hips, lean forward.', sets: 3 },
+        { name: 'Pike pushups · 10', detail: 'Shoulder work.', sets: 3 },
+        { name: 'Deficit pushups · 10', detail: 'Hands on books. Deeper stretch on the chest.', sets: 2 },
+        { name: 'Max pushup test', detail: 'How many can you do? Log it in the Tracker.', sets: 1 },
+      ]},
+      { label: 'Abs', accent: 'abs', exercises: [
+        { name: 'Crunches · 40', sets: 3 },
+        { name: 'Dragon flag negatives · 5', detail: 'Lower slowly from lying flat. Advanced core.', sets: 3 },
+        { name: 'Hollow body hold · 30 sec', sets: 3 },
+        { name: 'Bicycle kicks · 50', sets: 3 },
+      ]},
+    ],
+    cardio: 'HIIT in the morning before grease-the-groove starts.'
+  },
+
+  d6: {
+    badge: 'Day 6 · Benchmark',
+    badgeClass: 'badge-bench',
+    title: 'Weekly Best Effort',
+    sections: [
+      { label: 'Weekly Benchmarks · Log All', accent: 'gold', exercises: [
+        { name: 'Max consecutive pull-ups', detail: 'Strict form. Log it in the Tracker.', sets: 1 },
+        { name: 'Max consecutive pushups', detail: 'Standard form. Log it in the Tracker.', sets: 1 },
+        { name: 'Max dead hang time', detail: 'Log it in the Tracker.', sets: 1 },
+      ]},
+      { label: 'Full Pull Circuit', accent: 'pull', exercises: [
+        { name: 'Pull-ups · 6–8', sets: 3 },
+        { name: 'Chin-ups · 8', sets: 3 },
+        { name: 'YTW raises · 10 each letter', sets: 3 },
+        { name: 'Reverse snow angels · 12', sets: 3 },
+      ]},
+      { label: 'Full Push Circuit', accent: 'push', exercises: [
+        { name: 'Pseudo planche pushups · 8–10', sets: 3 },
+        { name: 'Archer pushups · 8 each side', sets: 3 },
+        { name: 'Diamond pushups · 15', sets: 3 },
+        { name: 'Hindu pushups · 12', sets: 3 },
+      ]},
+      { label: 'Full Abs Circuit', accent: 'abs', exercises: [
+        { name: 'Hanging knee raises · 12', sets: 3 },
+        { name: 'Crunches · 40', sets: 3 },
+        { name: 'Bicycle kicks · 50', sets: 3 },
+        { name: 'Hollow body hold · 30 sec', sets: 3 },
+        { name: 'Plank · 60 sec', sets: 2 },
+      ]},
+    ],
+    cardio: "Optional. Keep it easy if you do anything. You've earned it."
+  },
+};
+
+const VIEW_DAYS = {
+  push: ['d1','d3','d5'],
+  pull: ['d2','d4','d6'],
+};
+
+// ══════════════════════ STATE ══════════════════════
+const STATE_KEY = 'workout_state_v2';
+const WEEK_KEY = 'workout_week_start';
+const LOG_KEYS = { pushups: 'log_pushups_v1', pullups: 'log_pullups_v1', hang: 'log_hang_v1' };
+const CARDIO_KEY = 'log_cardio_v1';
 
 function getState() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
+  try { return JSON.parse(localStorage.getItem(STATE_KEY)) || {}; } catch { return {}; }
 }
-function saveState(s) { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
-function getReps() {
-  try { return JSON.parse(localStorage.getItem(REPS_KEY)) || []; } catch { return []; }
+function saveState(s) { localStorage.setItem(STATE_KEY, JSON.stringify(s)); }
+function getLog(k) {
+  try { return JSON.parse(localStorage.getItem(LOG_KEYS[k])) || []; } catch { return []; }
 }
-function saveReps(r) { localStorage.setItem(REPS_KEY, JSON.stringify(r)); }
-function getWater() {
-  try {
-    const d = JSON.parse(localStorage.getItem(WATER_KEY)) || {};
-    const today = new Date().toDateString();
-    if(d.date !== today) return 0;
-    return d.count || 0;
-  } catch { return 0; }
+function saveLog(k, v) { localStorage.setItem(LOG_KEYS[k], JSON.stringify(v)); }
+function getCardio() {
+  try { return JSON.parse(localStorage.getItem(CARDIO_KEY)) || []; } catch { return []; }
 }
-function saveWater(n) {
-  localStorage.setItem(WATER_KEY, JSON.stringify({ date: new Date().toDateString(), count: n }));
-}
-function getCheat() {
-  try {
-    const d = JSON.parse(localStorage.getItem(CHEAT_KEY)) || {};
-    const week = getWeekKey();
-    if(d.week !== week) return 0;
-    return d.count || 0;
-  } catch { return 0; }
-}
-function saveCheat(n) {
-  localStorage.setItem(CHEAT_KEY, JSON.stringify({ week: getWeekKey(), count: n }));
-}
-function getWeekKey() {
+function saveCardio(v) { localStorage.setItem(CARDIO_KEY, JSON.stringify(v)); }
+
+function currentMonday() {
   const d = new Date();
-  const jan1 = new Date(d.getFullYear(),0,1);
-  const wk = Math.ceil(((d-jan1)/86400000 + jan1.getDay()+1)/7);
-  return `${d.getFullYear()}-W${wk}`;
+  d.setHours(0,0,0,0);
+  const day = d.getDay();
+  const offset = day === 0 ? -6 : 1 - day;
+  d.setDate(d.getDate() + offset);
+  return d.getTime();
 }
 
-// ── View switching ──
-const views = ['push','full','tracker','nutrition','rest'];
+function checkWeekReset() {
+  const cur = currentMonday();
+  const stored = parseInt(localStorage.getItem(WEEK_KEY) || '0', 10);
+  if (stored !== cur) {
+    localStorage.removeItem(STATE_KEY);
+    localStorage.setItem(WEEK_KEY, String(cur));
+  }
+  const d = new Date(cur);
+  document.getElementById('weekPill').textContent = 'Week of ' + d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+// ══════════════════════ RENDER ══════════════════════
+function renderViews() {
+  ['push','pull'].forEach(v => {
+    const container = document.getElementById('view-'+v);
+    container.innerHTML = '';
+    VIEW_DAYS[v].forEach(dayId => container.appendChild(buildDayCard(dayId)));
+  });
+}
+
+function buildDayCard(dayId) {
+  const day = PROGRAM[dayId];
+  const card = document.createElement('div');
+  card.className = 'day-card';
+  card.id = 'card-' + dayId;
+
+  const header = document.createElement('div');
+  header.className = 'day-header';
+  header.onclick = () => card.classList.toggle('open');
+  header.innerHTML =
+    '<div class="day-header-left"><div>' +
+      '<div class="day-badge ' + day.badgeClass + '">' + day.badge + '</div>' +
+      '<div class="day-title">' + day.title + '</div>' +
+      '<div class="day-progress">' +
+        '<div class="progress-dots" id="dots-' + dayId + '"></div>' +
+        '<div class="progress-text" id="prog-' + dayId + '"></div>' +
+      '</div>' +
+    '</div></div>' +
+    '<div class="chevron">⌄</div>';
+  card.appendChild(header);
+
+  const body = document.createElement('div');
+  body.className = 'day-body';
+
+  let flatIdx = 0;
+  day.sections.forEach((section) => {
+    const lbl = document.createElement('div');
+    lbl.className = 'section-label ' + section.accent;
+    lbl.textContent = '— ' + section.label;
+    body.appendChild(lbl);
+    section.exercises.forEach((ex) => {
+      body.appendChild(buildExItem(dayId, flatIdx, ex, section.accent));
+      flatIdx++;
+    });
+  });
+
+  if (day.cardio) {
+    const note = document.createElement('div');
+    note.className = 'cardio-note';
+    note.innerHTML =
+      '<span class="ico">🔥</span>' +
+      '<span>' + day.cardio + '</span>' +
+      '<button class="cardio-cta" onclick="openCardioModal()">LOG</button>';
+    body.appendChild(note);
+  }
+
+  const reset = document.createElement('button');
+  reset.className = 'reset-btn';
+  reset.textContent = '↺ Reset Day';
+  reset.onclick = () => resetDay(dayId);
+  body.appendChild(reset);
+
+  card.appendChild(body);
+  return card;
+}
+
+function buildExItem(dayId, exIdx, ex, accent) {
+  const item = document.createElement('div');
+  item.className = 'ex-item';
+  item.dataset.day = dayId;
+  item.dataset.ex = exIdx;
+
+  const text = document.createElement('div');
+  text.className = 'ex-text';
+  text.innerHTML =
+    '<div class="ex-name">' + ex.name + '</div>' +
+    (ex.detail ? '<div class="ex-detail">' + ex.detail + '</div>' : '');
+  item.appendChild(text);
+
+  const sets = document.createElement('div');
+  sets.className = 'ex-sets';
+  for (let i = 0; i < ex.sets; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'set-dot';
+    btn.textContent = ex.sets === 1 ? '✓' : (i + 1);
+    btn.onclick = () => toggleSet(dayId, exIdx, i, btn, ex.sets, accent);
+    sets.appendChild(btn);
+  }
+  item.appendChild(sets);
+  return item;
+}
+
+function toggleSet(dayId, exIdx, setIdx, btn, totalSets, accent) {
+  const state = getState();
+  if (!state[dayId]) state[dayId] = {};
+  if (!state[dayId][exIdx]) state[dayId][exIdx] = new Array(totalSets).fill(false);
+  state[dayId][exIdx][setIdx] = !state[dayId][exIdx][setIdx];
+  saveState(state);
+
+  btn.classList.toggle('done', state[dayId][exIdx][setIdx]);
+
+  const allDots = btn.parentElement.querySelectorAll('.set-dot');
+  const doneDots = btn.parentElement.querySelectorAll('.set-dot.done');
+  const exItem = btn.closest('.ex-item');
+  exItem.classList.toggle('done', allDots.length === doneDots.length);
+
+  updateDayProgress(dayId);
+
+  if (state[dayId][exIdx][setIdx] && totalSets > 1 && accent !== 'warmup') {
+    startRestTimer(90);
+  }
+}
+
+function updateDayProgress(dayId) {
+  const card = document.getElementById('card-' + dayId);
+  if (!card) return;
+  const items = card.querySelectorAll('.ex-item');
+  const total = items.length;
+  let done = 0;
+  items.forEach(i => { if (i.classList.contains('done')) done++; });
+  const dotsEl = document.getElementById('dots-' + dayId);
+  const progEl = document.getElementById('prog-' + dayId);
+  dotsEl.innerHTML = '';
+  const showCount = Math.min(total, 18);
+  for (let i = 0; i < showCount; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i < done ? ' done' : '');
+    dotsEl.appendChild(d);
+  }
+  progEl.textContent = total ? (done + '/' + total) : '';
+}
+
+function resetDay(dayId) {
+  const state = getState();
+  delete state[dayId];
+  saveState(state);
+  const card = document.getElementById('card-' + dayId);
+  card.querySelectorAll('.set-dot').forEach(b => b.classList.remove('done'));
+  card.querySelectorAll('.ex-item').forEach(i => i.classList.remove('done'));
+  updateDayProgress(dayId);
+}
+
+function restoreState() {
+  const state = getState();
+  Object.keys(state).forEach(dayId => {
+    const card = document.getElementById('card-' + dayId);
+    if (!card) return;
+    const items = card.querySelectorAll('.ex-item');
+    items.forEach((item, exIdx) => {
+      const exState = state[dayId][exIdx];
+      if (!exState) return;
+      const dots = item.querySelectorAll('.set-dot');
+      let allDone = exState.length > 0;
+      dots.forEach((dot, sIdx) => {
+        if (exState[sIdx]) { dot.classList.add('done'); }
+        else { allDone = false; }
+      });
+      if (allDone && dots.length > 0) item.classList.add('done');
+    });
+    updateDayProgress(dayId);
+  });
+}
+
+// ══════════════════════ VIEW SWITCHING ══════════════════════
+const VIEWS = ['push','pull','tracker','rest'];
 function showView(v) {
-  views.forEach(id => {
+  VIEWS.forEach(id => {
     document.getElementById('view-'+id).classList.toggle('active', id===v);
     const btn = document.getElementById('bnav-'+id);
-    if(btn) btn.classList.remove('active','active-push-btn','active-full-btn','active-gold-btn','active-nutrition-btn');
+    btn.classList.remove('active','active-push-btn','active-pull-btn','active-gold-btn');
   });
   const btn = document.getElementById('bnav-'+v);
-  if(btn) {
-    btn.classList.add('active');
-    if(v==='push') btn.classList.add('active-push-btn');
-    if(v==='full') btn.classList.add('active-full-btn');
-    if(v==='tracker') btn.classList.add('active-gold-btn');
-    if(v==='nutrition') btn.classList.add('active-nutrition-btn');
-  }
-  if(v==='tracker') renderTracker();
-  if(v==='nutrition') renderNutrition();
+  btn.classList.add('active');
+  if (v==='push') btn.classList.add('active-push-btn');
+  if (v==='pull') btn.classList.add('active-pull-btn');
+  if (v==='tracker') { btn.classList.add('active-gold-btn'); renderAllTracker(); }
 
-  // update top nav
   document.querySelectorAll('.nav-tab').forEach((t,i) => {
     t.className = 'nav-tab';
-    if(views[i]===v) {
-      if(v==='push') t.classList.add('active-push');
-      else if(v==='full') t.classList.add('active-full');
-      else if(v==='tracker') t.classList.add('active-tracker');
-      else if(v==='nutrition') t.classList.add('active-nutrition');
+    if (VIEWS[i]===v) {
+      if (v==='push') t.classList.add('active-push');
+      else if (v==='pull') t.classList.add('active-pull');
+      else if (v==='tracker') t.classList.add('active-tracker');
       else t.classList.add('active-rest');
     }
   });
 }
 
-// ── Toggle day card ──
-function toggleDay(id) {
-  const card = document.getElementById('card-'+id);
-  card.classList.toggle('open');
+// ══════════════════════ REST TIMER ══════════════════════
+let restInterval = null;
+let restRemaining = 0;
+function startRestTimer(seconds) {
+  clearInterval(restInterval);
+  restRemaining = seconds;
+  document.getElementById('restTimer').classList.add('show');
+  updateRestDisplay();
+  restInterval = setInterval(() => {
+    restRemaining--;
+    if (restRemaining <= 0) { dismissTimer(); return; }
+    updateRestDisplay();
+  }, 1000);
+}
+function updateRestDisplay() {
+  const m = Math.floor(restRemaining / 60);
+  const s = restRemaining % 60;
+  document.getElementById('restCount').textContent = m + ':' + String(s).padStart(2,'0');
+}
+function addRest(sec) { restRemaining += sec; updateRestDisplay(); }
+function dismissTimer() {
+  clearInterval(restInterval);
+  document.getElementById('restTimer').classList.remove('show');
 }
 
-// ── Toggle exercise ──
-function toggleEx(el) {
-  el.classList.toggle('done');
-  const card = el.closest('.day-card');
-  const id = card.id.replace('card-','');
-  const all = card.querySelectorAll('.ex-item');
-  const done = card.querySelectorAll('.ex-item.done');
-  const state = getState();
-  state[id] = Array.from(all).map(e => e.classList.contains('done'));
-  saveState(state);
-  updateProgress(card, id, done.length, all.length);
+// ══════════════════════ TRACKER ══════════════════════
+function showTrackPane(p) {
+  document.querySelectorAll('.track-tab').forEach(t => t.classList.toggle('active', t.dataset.pane===p));
+  document.querySelectorAll('.track-pane').forEach(el => el.classList.toggle('active', el.id==='pane-'+p));
 }
 
-function updateProgress(card, id, done, total) {
-  const dotsEl = document.getElementById('dots-'+id);
-  const progEl = document.getElementById('prog-'+id);
-  if(!dotsEl) return;
-  dotsEl.innerHTML = '';
-  for(let i=0;i<Math.min(total,12);i++) {
-    const d = document.createElement('div');
-    d.className = 'dot' + (i < done ? ' done' : '');
-    dotsEl.appendChild(d);
-  }
-  if(total > 12) {
-    const more = document.createElement('div');
-    more.className = 'progress-text';
-    more.style.marginLeft='2px';
-    more.textContent = '+';
-    dotsEl.appendChild(more);
-  }
-  progEl.textContent = done > 0 ? `${done}/${total}` : '';
-}
-
-function resetDay(id) {
-  const card = document.getElementById('card-'+id);
-  card.querySelectorAll('.ex-item').forEach(e => e.classList.remove('done'));
-  const state = getState();
-  delete state[id];
-  saveState(state);
-  const all = card.querySelectorAll('.ex-item');
-  updateProgress(card, id, 0, all.length);
-}
-
-// ── Restore state on load ──
-function restoreState() {
-  const state = getState();
-  Object.keys(state).forEach(id => {
-    const card = document.getElementById('card-'+id);
-    if(!card) return;
-    const items = card.querySelectorAll('.ex-item');
-    const flags = state[id];
-    let done = 0;
-    items.forEach((el,i) => {
-      if(flags[i]) { el.classList.add('done'); done++; }
-    });
-    updateProgress(card, id, done, items.length);
-  });
-}
-
-// ── Tracker ──
-function logReps() {
-  const val = parseInt(document.getElementById('repInput').value);
-  if(!val || val < 1) return;
-  const logs = getReps();
+function logMetric(kind) {
+  const input = document.getElementById('input-'+kind);
+  const val = parseInt(input.value);
+  if (!val || val < 1) return;
+  const logs = getLog(kind);
   const now = new Date();
-  const week = `Wk ${logs.length+1} · ${now.toLocaleDateString('en-US',{month:'short',day:'numeric'})}`;
+  const week = 'Wk ' + (logs.length+1) + ' · ' + now.toLocaleDateString('en-US',{month:'short',day:'numeric'});
   logs.push({ reps: val, week, ts: Date.now() });
-  saveReps(logs);
-  document.getElementById('repInput').value = '';
-  renderTracker();
+  saveLog(kind, logs);
+  input.value = '';
+  renderMetric(kind);
 }
-
-function deleteLog(i) {
-  const logs = getReps();
+function deleteLogEntry(kind, i) {
+  const logs = getLog(kind);
   logs.splice(i,1);
-  saveReps(logs);
-  renderTracker();
+  saveLog(kind, logs);
+  renderMetric(kind);
 }
 
-function renderTracker() {
-  const logs = getReps();
+const METRIC_UNIT = { pushups: 'reps', pullups: 'reps', hang: 'sec' };
+
+function renderMetric(kind) {
+  const logs = getLog(kind);
   const pb = logs.length ? Math.max(...logs.map(l=>l.reps)) : null;
   const latest = logs.length ? logs[logs.length-1] : null;
 
-  document.getElementById('stat-pb').textContent = pb ?? '—';
-  document.getElementById('stat-latest').textContent = latest ? latest.reps : '—';
-  document.getElementById('stat-latest-week').textContent = latest ? latest.week : 'no entries yet';
+  document.getElementById('pb-'+kind).textContent = pb != null ? pb : '—';
+  document.getElementById('latest-'+kind).textContent = latest ? latest.reps : '—';
+  document.getElementById('latest-'+kind+'-week').textContent = latest ? latest.week : 'no entries yet';
 
-  // Chart
-  const chartArea = document.getElementById('chartArea');
-  if(!logs.length) {
+  const chartArea = document.getElementById('chart-'+kind);
+  if (!logs.length) {
     chartArea.innerHTML = '<div class="chart-empty">Log your first session to see progress</div>';
   } else {
     const max = Math.max(...logs.map(l=>l.reps));
@@ -1329,18 +1393,17 @@ function renderTracker() {
       const isLatest = i === show.length-1;
       const wrap = document.createElement('div');
       wrap.className = 'bar-wrap';
-      wrap.innerHTML = `
-        <div class="bar-val">${l.reps}</div>
-        <div class="bar${isLatest?' latest':''}" style="height:${pct}%"></div>
-        <div class="bar-week">${l.week.split('·')[1]?.trim()||'W'+(i+1)}</div>
-      `;
+      const wkPart = (l.week.split('·')[1] || '').trim() || ('W'+(i+1));
+      wrap.innerHTML =
+        '<div class="bar-val">' + l.reps + '</div>' +
+        '<div class="bar' + (isLatest?' latest':'') + '" style="height:' + pct + '%"></div>' +
+        '<div class="bar-week">' + wkPart + '</div>';
       chartArea.appendChild(wrap);
     });
   }
 
-  // History
-  const histEl = document.getElementById('historyList');
-  if(!logs.length) {
+  const histEl = document.getElementById('history-'+kind);
+  if (!logs.length) {
     histEl.innerHTML = '<div style="font-size:12px;color:var(--muted);">No entries yet.</div>';
     return;
   }
@@ -1349,87 +1412,129 @@ function renderTracker() {
     const i = logs.length-1-ri;
     const prev = i > 0 ? logs[i-1].reps : null;
     let deltaHtml = '';
-    if(prev !== null) {
+    if (prev !== null) {
       const diff = l.reps - prev;
-      if(diff > 0) deltaHtml = `<span class="history-delta up">+${diff}</span>`;
-      else if(diff < 0) deltaHtml = `<span class="history-delta down">${diff}</span>`;
-      else deltaHtml = `<span class="history-delta same">—</span>`;
+      if (diff > 0) deltaHtml = '<span class="history-delta up">+' + diff + '</span>';
+      else if (diff < 0) deltaHtml = '<span class="history-delta down">' + diff + '</span>';
+      else deltaHtml = '<span class="history-delta same">—</span>';
     }
     const row = document.createElement('div');
     row.className = 'history-item';
-    row.innerHTML = `
-      <div>
-        <div style="font-size:13px;font-weight:500;">${l.week}</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;">
-        ${deltaHtml}
-        <div class="history-reps">${l.reps}</div>
-        <button class="del-btn" onclick="deleteLog(${i})">✕</button>
-      </div>
-    `;
+    row.innerHTML =
+      '<div><div style="font-size:13px;font-weight:500;">' + l.week + '</div></div>' +
+      '<div style="display:flex;align-items:center;gap:10px;">' +
+        deltaHtml +
+        '<div class="history-reps">' + l.reps + '<span style="font-size:10px;color:var(--muted);font-weight:400;margin-left:3px;">' + METRIC_UNIT[kind] + '</span></div>' +
+        '<button class="del-btn" onclick="deleteLogEntry(\'' + kind + '\',' + i + ')">✕</button>' +
+      '</div>';
     histEl.appendChild(row);
   });
 }
 
-// ── Meal toggle ──
-function toggleMeal(id) {
-  document.getElementById('meal-'+id).classList.toggle('open');
-}
+// ── Cardio ──
+let cardioSelectedType = 'HIIT';
+let modalCardioType = 'HIIT';
 
-// ── Nutrition render ──
-function renderNutrition() {
-  renderWater();
-  renderCheat();
-}
-
-function renderWater() {
-  const count = getWater();
-  const container = document.getElementById('waterGlasses');
-  container.innerHTML = '';
-  for(let i=0;i<8;i++) {
-    const btn = document.createElement('button');
-    btn.className = 'glass-btn' + (i < count ? ' filled' : '');
-    btn.textContent = '💧';
-    btn.onclick = () => {
-      const cur = getWater();
-      saveWater(i < cur ? i : i+1);
-      renderWater();
+function bindCardioTypeBtns() {
+  document.querySelectorAll('#cardioTypes .cardio-type-btn').forEach(b => {
+    b.onclick = () => {
+      document.querySelectorAll('#cardioTypes .cardio-type-btn').forEach(x => x.classList.remove('selected'));
+      b.classList.add('selected');
+      cardioSelectedType = b.dataset.type;
     };
-    container.appendChild(btn);
-  }
-  document.getElementById('waterCount').textContent = count;
-}
-
-function renderCheat() {
-  const count = getCheat();
-  const container = document.getElementById('cheatCircles');
-  container.innerHTML = '';
-  for(let i=0;i<2;i++) {
-    const c = document.createElement('div');
-    c.className = 'cheat-circle' + (i < count ? ' used' : '');
-    c.textContent = i < count ? '🍕' : '○';
-    c.onclick = () => {
-      const cur = getCheat();
-      saveCheat(i < cur ? i : i+1);
-      renderCheat();
+  });
+  document.querySelectorAll('#cardioTypesModal .cardio-type-btn').forEach(b => {
+    b.onclick = () => {
+      document.querySelectorAll('#cardioTypesModal .cardio-type-btn').forEach(x => x.classList.remove('selected'));
+      b.classList.add('selected');
+      modalCardioType = b.dataset.type;
     };
-    container.appendChild(c);
+  });
+}
+
+function logCardio() {
+  const min = parseInt(document.getElementById('cardio-min').value);
+  const dist = parseFloat(document.getElementById('cardio-dist').value) || null;
+  if (!min || min < 1) return;
+  const logs = getCardio();
+  logs.push({ type: cardioSelectedType, min, dist, ts: Date.now() });
+  saveCardio(logs);
+  document.getElementById('cardio-min').value = '';
+  document.getElementById('cardio-dist').value = '';
+  renderCardio();
+}
+
+function openCardioModal() {
+  document.getElementById('cardioModal').classList.add('show');
+}
+function closeCardioModal() {
+  document.getElementById('cardioModal').classList.remove('show');
+  document.getElementById('modal-min').value = '';
+  document.getElementById('modal-dist').value = '';
+}
+function logCardioFromModal() {
+  const min = parseInt(document.getElementById('modal-min').value);
+  const dist = parseFloat(document.getElementById('modal-dist').value) || null;
+  if (!min || min < 1) { closeCardioModal(); return; }
+  const logs = getCardio();
+  logs.push({ type: modalCardioType, min, dist, ts: Date.now() });
+  saveCardio(logs);
+  closeCardioModal();
+  renderCardio();
+}
+
+function deleteCardio(i) {
+  const logs = getCardio();
+  logs.splice(i,1);
+  saveCardio(logs);
+  renderCardio();
+}
+
+function renderCardio() {
+  const logs = getCardio();
+  const weekStart = currentMonday();
+  const weekLogs = logs.filter(l => l.ts >= weekStart);
+  const weekMin = weekLogs.reduce((s,l)=>s+l.min, 0);
+  document.getElementById('cardio-week-min').textContent = weekMin;
+  document.getElementById('cardio-week-count').textContent = weekLogs.length;
+
+  const histEl = document.getElementById('history-cardio');
+  if (!logs.length) {
+    histEl.innerHTML = '<div style="font-size:12px;color:var(--muted);">No entries yet.</div>';
+    return;
   }
-  const status = document.getElementById('cheatStatus');
-  if(count === 0) { status.textContent = '✓ No cheats yet this week — you\'re golden'; status.className='cheat-status ok'; }
-  else if(count === 1) { status.textContent = '1 used — 1 left. No stress.'; status.className='cheat-status ok'; }
-  else { status.textContent = 'Both used. Back on plan now.'; status.className='cheat-status maxed'; }
+  histEl.innerHTML = '';
+  [...logs].reverse().forEach((l,ri) => {
+    const i = logs.length-1-ri;
+    const d = new Date(l.ts);
+    const date = d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+    const distStr = l.dist ? (' · ' + l.dist + ' km') : '';
+    const row = document.createElement('div');
+    row.className = 'history-item';
+    row.innerHTML =
+      '<div>' +
+        '<div style="font-size:13px;font-weight:500;">' + l.type + '<span style="color:var(--muted);font-weight:400;"> · ' + date + '</span></div>' +
+        '<div style="font-size:11px;color:var(--muted);margin-top:2px;">' + l.min + ' min' + distStr + '</div>' +
+      '</div>' +
+      '<button class="del-btn" onclick="deleteCardio(' + i + ')">✕</button>';
+    histEl.appendChild(row);
+  });
 }
 
-function resetCheats() {
-  saveCheat(0);
-  renderCheat();
+function renderAllTracker() {
+  renderMetric('pushups');
+  renderMetric('pullups');
+  renderMetric('hang');
+  renderCardio();
 }
 
-// ── Init ──
-showView('push');
+// ══════════════════════ INIT ══════════════════════
+checkWeekReset();
+renderViews();
 restoreState();
-renderTracker();
+bindCardioTypeBtns();
+renderAllTracker();
+showView('push');
 </script>
 </body>
 </html>
