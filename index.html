@@ -680,7 +680,7 @@
 <div class="header">
   <div class="header-label">6-Day Calisthenics</div>
   <div class="header-title">THE <span>PROGRAM</span></div>
-  <div class="header-sub">Lean · Athletic · No Gym Required</div>
+  <div class="header-sub">Lean · Athletic · Floor Only</div>
   <div class="week-pill" id="weekPill">Week of —</div>
 </div>
 
@@ -703,8 +703,8 @@
 
   <div class="track-tabs">
     <div class="track-tab active" data-pane="pushups" onclick="showTrackPane('pushups')">Pushups</div>
-    <div class="track-tab" data-pane="pullups" onclick="showTrackPane('pullups')">Pull-ups</div>
-    <div class="track-tab" data-pane="hang" onclick="showTrackPane('hang')">Hang</div>
+    <div class="track-tab" data-pane="plank" onclick="showTrackPane('plank')">Plank</div>
+    <div class="track-tab" data-pane="row" onclick="showTrackPane('row')">Row Hold</div>
     <div class="track-tab" data-pane="cardio" onclick="showTrackPane('cardio')">Cardio</div>
   </div>
 
@@ -739,65 +739,65 @@
     </div>
   </div>
 
-  <!-- PULLUPS PANE -->
-  <div class="track-pane" id="pane-pullups">
+  <!-- PLANK PANE -->
+  <div class="track-pane" id="pane-plank">
     <div class="stat-row">
       <div class="stat-card gold">
         <div class="stat-label">Personal Best</div>
-        <div class="stat-value" id="pb-pullups">—</div>
-        <div class="stat-sub">consecutive reps</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Latest</div>
-        <div class="stat-value green" id="latest-pullups">—</div>
-        <div class="stat-sub" id="latest-pullups-week">no entries yet</div>
-      </div>
-    </div>
-    <div class="log-section">
-      <div class="log-title">LOG MAX PULL-UPS</div>
-      <div class="log-input-row">
-        <input class="log-input" type="number" id="input-pullups" placeholder="0" min="1" max="100">
-        <button class="log-btn" onclick="logMetric('pullups')">LOG IT</button>
-      </div>
-    </div>
-    <div class="chart-wrap">
-      <div class="chart-title">Progress</div>
-      <div class="chart-area" id="chart-pullups"><div class="chart-empty">Log your first session to see progress</div></div>
-    </div>
-    <div class="log-section">
-      <div class="log-title">HISTORY</div>
-      <div id="history-pullups"><div style="font-size:12px;color:var(--muted);">No entries yet.</div></div>
-    </div>
-  </div>
-
-  <!-- HANG PANE -->
-  <div class="track-pane" id="pane-hang">
-    <div class="stat-row">
-      <div class="stat-card gold">
-        <div class="stat-label">Personal Best</div>
-        <div class="stat-value" id="pb-hang">—</div>
+        <div class="stat-value" id="pb-plank">—</div>
         <div class="stat-sub">seconds</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">Latest</div>
-        <div class="stat-value green" id="latest-hang">—</div>
-        <div class="stat-sub" id="latest-hang-week">no entries yet</div>
+        <div class="stat-value green" id="latest-plank">—</div>
+        <div class="stat-sub" id="latest-plank-week">no entries yet</div>
       </div>
     </div>
     <div class="log-section">
-      <div class="log-title">LOG MAX DEAD HANG (sec)</div>
+      <div class="log-title">LOG MAX PLANK (sec)</div>
       <div class="log-input-row">
-        <input class="log-input" type="number" id="input-hang" placeholder="0" min="1" max="600">
-        <button class="log-btn" onclick="logMetric('hang')">LOG IT</button>
+        <input class="log-input" type="number" id="input-plank" placeholder="0" min="1" max="900">
+        <button class="log-btn" onclick="logMetric('plank')">LOG IT</button>
       </div>
     </div>
     <div class="chart-wrap">
       <div class="chart-title">Progress</div>
-      <div class="chart-area" id="chart-hang"><div class="chart-empty">Log your first session to see progress</div></div>
+      <div class="chart-area" id="chart-plank"><div class="chart-empty">Log your first session to see progress</div></div>
     </div>
     <div class="log-section">
       <div class="log-title">HISTORY</div>
-      <div id="history-hang"><div style="font-size:12px;color:var(--muted);">No entries yet.</div></div>
+      <div id="history-plank"><div style="font-size:12px;color:var(--muted);">No entries yet.</div></div>
+    </div>
+  </div>
+
+  <!-- ROW HOLD PANE -->
+  <div class="track-pane" id="pane-row">
+    <div class="stat-row">
+      <div class="stat-card gold">
+        <div class="stat-label">Personal Best</div>
+        <div class="stat-value" id="pb-row">—</div>
+        <div class="stat-sub">seconds</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Latest</div>
+        <div class="stat-value green" id="latest-row">—</div>
+        <div class="stat-sub" id="latest-row-week">no entries yet</div>
+      </div>
+    </div>
+    <div class="log-section">
+      <div class="log-title">LOG MAX DOORWAY ROW HOLD (sec)</div>
+      <div class="log-input-row">
+        <input class="log-input" type="number" id="input-row" placeholder="0" min="1" max="600">
+        <button class="log-btn" onclick="logMetric('row')">LOG IT</button>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">Progress</div>
+      <div class="chart-area" id="chart-row"><div class="chart-empty">Log your first session to see progress</div></div>
+    </div>
+    <div class="log-section">
+      <div class="log-title">HISTORY</div>
+      <div id="history-row"><div style="font-size:12px;color:var(--muted);">No entries yet.</div></div>
     </div>
   </div>
 
@@ -923,11 +923,9 @@ const PROGRAM = {
       ]},
       { label: 'Chest & Triceps', accent: 'push', exercises: [
         { name: 'Wide pushups · to near failure', detail: 'Hands wider than shoulders. Squeezes the chest harder.', sets: 3 },
-        { name: 'Pseudo planche pushups · 6–10', detail: 'Hands at hip level, fingers pointing back, lean forward. Shoulders + chest. Hard.', sets: 3 },
         { name: 'Diamond pushups · 12–15', detail: 'Hands in diamond. Triceps and inner chest.', sets: 3 },
-        { name: 'Deficit decline pushups · 8–12', detail: 'Feet on couch, hands on books. Deeper ROM = more chest stretch.', sets: 3 },
+        { name: 'Decline pushups · 10–15', detail: 'Feet elevated on couch or chair. Upper chest and shoulders.', sets: 3 },
         { name: 'Archer pushups · 6–8 each side', detail: 'One arm extended wide, other arm does the work. Path to one-arm pushup.', sets: 2 },
-        { name: 'Plyometric pushups · 5–8', detail: 'Explosive. Push hard enough to leave the floor.', sets: 2 },
       ]},
       { label: 'Abs', accent: 'abs', exercises: [
         { name: 'Crunches · 30–40', sets: 3 },
@@ -945,20 +943,19 @@ const PROGRAM = {
     title: 'Pull & Posture',
     sections: [
       { label: 'Warm Up', accent: 'warmup', exercises: [
-        { name: 'Dead hang · 30 sec', detail: 'Hang from the bar with shoulders engaged. Decompresses spine, opens shoulders.', sets: 1 },
-        { name: 'Scapular pulls · 8', detail: 'Hang from bar. Pull shoulder blades DOWN without bending arms. Activates the lats.', sets: 2 },
+        { name: 'Wall angels · 10', detail: 'Back and arms pressed flat against wall. Slide arms up and down keeping contact. Opens up the shoulders.', sets: 2 },
+        { name: 'Prone cobra hold · 20 sec', detail: 'Face down, arms out to sides palms up, squeeze shoulder blades. Warms up the whole back.', sets: 2 },
         { name: 'Arm circles · 30 sec each direction', sets: 1 },
       ]},
-      { label: 'Pull Progression (Priority)', accent: 'pull', exercises: [
-        { name: 'Pull-up negatives · 3–5 reps', detail: 'Jump or step to top position. Lower yourself for 5 seconds. Builds strength fast.', sets: 3 },
-        { name: 'Pull-ups · max (aim 2–5)', detail: 'Strict form. Chin over bar. Log your best set in the Tracker.', sets: 3 },
-        { name: 'Chin-ups · 5–8', detail: 'Underhand grip. Easier than pull-ups, hits biceps harder.', sets: 3 },
-        { name: 'Bodyweight rows · 10–15', detail: 'Under a sturdy table. Body straight, pull chest to edge. Use this until bar is up.', sets: 3 },
+      { label: 'Pull Work (Priority)', accent: 'pull', exercises: [
+        { name: 'Doorway isometric rows · 20–30 sec hold', detail: 'Face open doorway. Grab both sides of the frame at chest height, arms straight. Lean back on heels, then pull yourself in. Hold and squeeze.', sets: 3 },
+        { name: 'Doorway rows (low grip) · 20–30 sec hold', detail: 'Same as above but grip the frame at hip height. Hits the mid-back harder.', sets: 3 },
+        { name: 'Superman swim · 30 sec', detail: 'Face down, alternate raising opposite arm and leg. Constant motion.', sets: 3 },
       ]},
       { label: 'Posture Work', accent: 'pull', exercises: [
         { name: 'YTW raises (prone) · 8 each letter', detail: 'Face down. Raise arms in Y, then T, then W. Rear delts + mid-traps. The anti-slouch move.', sets: 3 },
-        { name: 'Superman hold · 20–30 sec', detail: 'Face down, lift arms and legs. Lower back.', sets: 3 },
         { name: 'Reverse snow angels · 10', detail: 'Face down. Sweep arms from sides to overhead, palms up. Mid-back + rear delts.', sets: 3 },
+        { name: 'Superman hold · 20–30 sec', detail: 'Face down, lift arms and legs. Lower back.', sets: 3 },
       ]},
       { label: 'Light Push', accent: 'push', exercises: [
         { name: 'Standard pushups · 12–15', detail: 'Controlled tempo, full ROM.', sets: 3 },
@@ -967,7 +964,7 @@ const PROGRAM = {
       { label: 'Abs', accent: 'abs', exercises: [
         { name: 'Situps · 30–40', sets: 3 },
         { name: 'Bicycle kicks · 40', sets: 3 },
-        { name: 'Side plank · 20–30 sec each side', detail: 'Obliques. Carved waist.', sets: 2 },
+        { name: 'Side plank · 20–30 sec each side', detail: 'Obliques.', sets: 2 },
       ]},
     ],
     cardio: 'Great HIIT day. 8–10 min if you go for it.'
@@ -980,11 +977,10 @@ const PROGRAM = {
     sections: [
       { label: 'Main Session', accent: 'push', exercises: [
         { name: 'Incline pushups · 15', detail: 'Hands elevated on couch. Warmup, hits lower chest.', sets: 2 },
-        { name: 'Pseudo planche pushups · 6–10', detail: 'Hands at hip level, fingers back, lean forward. Crushes shoulders + chest.', sets: 3 },
         { name: 'Standard pushups · max', detail: 'Go to failure. Note your number.', sets: 3 },
+        { name: 'Pseudo planche pushups · 6–10', detail: 'Hands at hip level, fingers back, lean forward. Crushes shoulders + chest.', sets: 3 },
         { name: 'Slow eccentric pushups · 8', detail: '4 seconds down, explode up. Time under tension = growth.', sets: 3 },
-        { name: 'Offset pushup · 8 each side', detail: 'One hand slightly forward. Unilateral chest activation.', sets: 3 },
-        { name: '3-second pause pushups · 8', detail: 'Pause 3 sec at the bottom (chest near floor). Brutal.', sets: 3 },
+        { name: 'Close-grip pushups · 12', detail: 'Hands close together, elbows tracking back. Tricep focus.', sets: 2 },
       ]},
       { label: 'Abs', accent: 'abs', exercises: [
         { name: 'Crunches · 40', sets: 3 },
@@ -1002,14 +998,14 @@ const PROGRAM = {
     title: 'Pull Volume',
     sections: [
       { label: 'Warm Up', accent: 'warmup', exercises: [
-        { name: 'Dead hang · 30–45 sec', sets: 3 },
-        { name: 'Scapular pulls · 10', sets: 2 },
+        { name: 'Wall angels · 12', sets: 2 },
+        { name: 'Reverse plank hold · 30 sec', detail: 'Seated, hands behind you, lift hips into reverse plank. Upper back + posterior chain.', sets: 2 },
       ]},
       { label: 'Pull Volume', accent: 'pull', exercises: [
-        { name: 'Pull-ups · max', detail: 'Try to beat Day 2 total reps. Strict form.', sets: 4 },
-        { name: 'Chin-ups · max', detail: 'Biceps focused.', sets: 3 },
-        { name: 'Archer rows · 6–8 each side', detail: 'Under table. One arm does most of the work, other guides. Path to one-arm row.', sets: 3 },
-        { name: 'Wide-grip pull-ups · max', detail: 'Wider than shoulders. More lat width. Sub negatives if too hard.', sets: 2 },
+        { name: 'Doorway isometric rows · 30 sec hold', detail: 'Chest-height grip. Pull hard, squeeze the mid-back.', sets: 4 },
+        { name: 'Doorway rows (low grip) · 30 sec hold', detail: 'Hip-height grip. Hits the mid-back harder.', sets: 3 },
+        { name: 'Superman swim · 45 sec', detail: 'Constant motion. Grinds the whole posterior chain.', sets: 3 },
+        { name: 'Prone cobra hold · 30 sec', detail: 'Arms out to sides, palms up, squeeze shoulder blades hard. Upper back endurance.', sets: 3 },
       ]},
       { label: 'Posture', accent: 'pull', exercises: [
         { name: 'YTW raises · 10 each letter', sets: 3 },
@@ -1020,10 +1016,10 @@ const PROGRAM = {
         { name: 'Pike pushups · 10–12', detail: 'Keep shoulder work going every session.', sets: 3 },
       ]},
       { label: 'Abs', accent: 'abs', exercises: [
-        { name: 'Hanging knee raises · 10–15', detail: 'Hang from bar, raise knees to chest. Crushes lower abs.', sets: 3 },
-        { name: 'Leg raises (floor) · 15', sets: 3 },
+        { name: 'Leg raises · 15', sets: 3 },
         { name: 'Side plank · 30 sec each', sets: 2 },
         { name: 'Bicycle kicks · 50', sets: 3 },
+        { name: 'Glute bridge hold · 30 sec', detail: 'On your back, drive hips up. Posterior chain + glutes.', sets: 3 },
       ]},
     ],
     cardio: 'Great HIIT or range day.'
@@ -1042,12 +1038,10 @@ const PROGRAM = {
         { name: 'Plyometric pushups · 8', detail: 'Explosive power. The athletic look.', sets: 3 },
         { name: 'Pseudo planche pushups · 6–10', detail: 'Hands at hips, lean forward.', sets: 3 },
         { name: 'Pike pushups · 10', detail: 'Shoulder work.', sets: 3 },
-        { name: 'Deficit pushups · 10', detail: 'Hands on books. Deeper stretch on the chest.', sets: 2 },
         { name: 'Max pushup test', detail: 'How many can you do? Log it in the Tracker.', sets: 1 },
       ]},
       { label: 'Abs', accent: 'abs', exercises: [
         { name: 'Crunches · 40', sets: 3 },
-        { name: 'Dragon flag negatives · 5', detail: 'Lower slowly from lying flat. Advanced core.', sets: 3 },
         { name: 'Hollow body hold · 30 sec', sets: 3 },
         { name: 'Bicycle kicks · 50', sets: 3 },
       ]},
@@ -1061,15 +1055,9 @@ const PROGRAM = {
     title: 'Weekly Best Effort',
     sections: [
       { label: 'Weekly Benchmarks · Log All', accent: 'gold', exercises: [
-        { name: 'Max consecutive pull-ups', detail: 'Strict form. Log it in the Tracker.', sets: 1 },
         { name: 'Max consecutive pushups', detail: 'Standard form. Log it in the Tracker.', sets: 1 },
-        { name: 'Max dead hang time', detail: 'Log it in the Tracker.', sets: 1 },
-      ]},
-      { label: 'Full Pull Circuit', accent: 'pull', exercises: [
-        { name: 'Pull-ups · 6–8', sets: 3 },
-        { name: 'Chin-ups · 8', sets: 3 },
-        { name: 'YTW raises · 10 each letter', sets: 3 },
-        { name: 'Reverse snow angels · 12', sets: 3 },
+        { name: 'Max plank hold', detail: 'Time it. Push for a new PR.', sets: 1 },
+        { name: 'Max doorway row hold', detail: 'Chest-height grip. Time how long you can hold it in.', sets: 1 },
       ]},
       { label: 'Full Push Circuit', accent: 'push', exercises: [
         { name: 'Pseudo planche pushups · 8–10', sets: 3 },
@@ -1077,10 +1065,16 @@ const PROGRAM = {
         { name: 'Diamond pushups · 15', sets: 3 },
         { name: 'Hindu pushups · 12', sets: 3 },
       ]},
+      { label: 'Full Pull Circuit', accent: 'pull', exercises: [
+        { name: 'Doorway rows · 30 sec hold', detail: 'Alternate chest and hip grip each set.', sets: 4 },
+        { name: 'YTW raises · 10 each letter', sets: 3 },
+        { name: 'Reverse snow angels · 12', sets: 3 },
+        { name: 'Superman swim · 45 sec', sets: 3 },
+      ]},
       { label: 'Full Abs Circuit', accent: 'abs', exercises: [
-        { name: 'Hanging knee raises · 12', sets: 3 },
         { name: 'Crunches · 40', sets: 3 },
         { name: 'Bicycle kicks · 50', sets: 3 },
+        { name: 'Dragon flag negatives · 5', detail: 'Lower slowly from lying flat. Advanced core.', sets: 3 },
         { name: 'Hollow body hold · 30 sec', sets: 3 },
         { name: 'Plank · 60 sec', sets: 2 },
       ]},
@@ -1097,7 +1091,7 @@ const VIEW_DAYS = {
 // ══════════════════════ STATE ══════════════════════
 const STATE_KEY = 'workout_state_v2';
 const WEEK_KEY = 'workout_week_start';
-const LOG_KEYS = { pushups: 'log_pushups_v1', pullups: 'log_pullups_v1', hang: 'log_hang_v1' };
+const LOG_KEYS = { pushups: 'log_pushups_v1', plank: 'log_plank_v1', row: 'log_row_v1' };
 const CARDIO_KEY = 'log_cardio_v1';
 
 function getState() {
@@ -1370,7 +1364,7 @@ function deleteLogEntry(kind, i) {
   renderMetric(kind);
 }
 
-const METRIC_UNIT = { pushups: 'reps', pullups: 'reps', hang: 'sec' };
+const METRIC_UNIT = { pushups: 'reps', plank: 'sec', row: 'sec' };
 
 function renderMetric(kind) {
   const logs = getLog(kind);
@@ -1523,8 +1517,8 @@ function renderCardio() {
 
 function renderAllTracker() {
   renderMetric('pushups');
-  renderMetric('pullups');
-  renderMetric('hang');
+  renderMetric('plank');
+  renderMetric('row');
   renderCardio();
 }
 
