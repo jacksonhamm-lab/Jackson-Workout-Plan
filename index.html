@@ -680,7 +680,7 @@
 <div class="header">
   <div class="header-label">6-Day Calisthenics</div>
   <div class="header-title">THE <span>PROGRAM</span></div>
-  <div class="header-sub">Lean · Athletic · Floor Only</div>
+  <div class="header-sub">Lean · Athletic · At Home</div>
   <div class="week-pill" id="weekPill">Week of —</div>
 </div>
 
@@ -704,7 +704,7 @@
   <div class="track-tabs">
     <div class="track-tab active" data-pane="pushups" onclick="showTrackPane('pushups')">Pushups</div>
     <div class="track-tab" data-pane="plank" onclick="showTrackPane('plank')">Plank</div>
-    <div class="track-tab" data-pane="row" onclick="showTrackPane('row')">Row Hold</div>
+    <div class="track-tab" data-pane="row" onclick="showTrackPane('row')">Row</div>
     <div class="track-tab" data-pane="cardio" onclick="showTrackPane('cardio')">Cardio</div>
   </div>
 
@@ -776,7 +776,7 @@
       <div class="stat-card gold">
         <div class="stat-label">Personal Best</div>
         <div class="stat-value" id="pb-row">—</div>
-        <div class="stat-sub">seconds</div>
+        <div class="stat-sub">reps at 10 kg</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">Latest</div>
@@ -785,9 +785,9 @@
       </div>
     </div>
     <div class="log-section">
-      <div class="log-title">LOG MAX DOORWAY ROW HOLD (sec)</div>
+      <div class="log-title">LOG MAX SINGLE-ARM ROW REPS (at 10 kg)</div>
       <div class="log-input-row">
-        <input class="log-input" type="number" id="input-row" placeholder="0" min="1" max="600">
+        <input class="log-input" type="number" id="input-row" placeholder="0" min="1" max="100">
         <button class="log-btn" onclick="logMetric('row')">LOG IT</button>
       </div>
     </div>
@@ -948,8 +948,9 @@ const PROGRAM = {
         { name: 'Arm circles · 30 sec each direction', sets: 1 },
       ]},
       { label: 'Pull Work (Priority)', accent: 'pull', exercises: [
-        { name: 'Doorway isometric rows · 20–30 sec hold', detail: 'Face open doorway. Grab both sides of the frame at chest height, arms straight. Lean back on heels, then pull yourself in. Hold and squeeze.', sets: 3 },
-        { name: 'Doorway rows (low grip) · 20–30 sec hold', detail: 'Same as above but grip the frame at hip height. Hits the mid-back harder.', sets: 3 },
+        { name: 'Single-arm dumbbell row · 12–15 each side', detail: 'Free hand and knee on chair or couch, back flat. Row weight from floor to hip, elbow tracking back. Squeeze at the top.', sets: 3 },
+        { name: 'Bent-over two-arm row · 15', detail: 'One dumbbell each hand. Hinge at hips, back flat, pull both to your ribs. Controlled.', sets: 3 },
+        { name: 'Reverse fly · 12', detail: 'Hinge at hips. Arms hang, palms facing each other. Sweep arms out to sides like wings. Rear delts + mid-traps. Use light weight, form matters.', sets: 3 },
         { name: 'Superman swim · 30 sec', detail: 'Face down, alternate raising opposite arm and leg. Constant motion.', sets: 3 },
       ]},
       { label: 'Posture Work', accent: 'pull', exercises: [
@@ -1002,9 +1003,10 @@ const PROGRAM = {
         { name: 'Reverse plank hold · 30 sec', detail: 'Seated, hands behind you, lift hips into reverse plank. Upper back + posterior chain.', sets: 2 },
       ]},
       { label: 'Pull Volume', accent: 'pull', exercises: [
-        { name: 'Doorway isometric rows · 30 sec hold', detail: 'Chest-height grip. Pull hard, squeeze the mid-back.', sets: 4 },
-        { name: 'Doorway rows (low grip) · 30 sec hold', detail: 'Hip-height grip. Hits the mid-back harder.', sets: 3 },
-        { name: 'Superman swim · 45 sec', detail: 'Constant motion. Grinds the whole posterior chain.', sets: 3 },
+        { name: 'Single-arm dumbbell row · 12–15 each side', detail: 'Main back builder. Slow eccentric (3 sec down) if 10 kg feels too light.', sets: 4 },
+        { name: 'Dumbbell pullover · 12', detail: 'Lie on back (or across a couch edge for deeper stretch). Hold one dumbbell with both hands, arms overhead, sweep it over your body to your hips. The lat move you\'re missing.', sets: 3 },
+        { name: 'Bent-over two-arm row · 15', detail: 'One dumbbell each hand. Row to ribs, elbows tucked.', sets: 3 },
+        { name: 'Reverse fly · 12', detail: 'Bent-over, arms out to sides like wings. Rear delts + mid-traps. Light weight, strict form.', sets: 3 },
         { name: 'Prone cobra hold · 30 sec', detail: 'Arms out to sides, palms up, squeeze shoulder blades hard. Upper back endurance.', sets: 3 },
       ]},
       { label: 'Posture', accent: 'pull', exercises: [
@@ -1057,7 +1059,7 @@ const PROGRAM = {
       { label: 'Weekly Benchmarks · Log All', accent: 'gold', exercises: [
         { name: 'Max consecutive pushups', detail: 'Standard form. Log it in the Tracker.', sets: 1 },
         { name: 'Max plank hold', detail: 'Time it. Push for a new PR.', sets: 1 },
-        { name: 'Max doorway row hold', detail: 'Chest-height grip. Time how long you can hold it in.', sets: 1 },
+        { name: 'Max single-arm row reps (at 10 kg)', detail: 'How many strict reps can you do? Log it in the Tracker.', sets: 1 },
       ]},
       { label: 'Full Push Circuit', accent: 'push', exercises: [
         { name: 'Pseudo planche pushups · 8–10', sets: 3 },
@@ -1066,10 +1068,11 @@ const PROGRAM = {
         { name: 'Hindu pushups · 12', sets: 3 },
       ]},
       { label: 'Full Pull Circuit', accent: 'pull', exercises: [
-        { name: 'Doorway rows · 30 sec hold', detail: 'Alternate chest and hip grip each set.', sets: 4 },
+        { name: 'Single-arm dumbbell row · 12 each side', sets: 4 },
+        { name: 'Dumbbell pullover · 12', sets: 3 },
+        { name: 'Reverse fly · 12', sets: 3 },
         { name: 'YTW raises · 10 each letter', sets: 3 },
         { name: 'Reverse snow angels · 12', sets: 3 },
-        { name: 'Superman swim · 45 sec', sets: 3 },
       ]},
       { label: 'Full Abs Circuit', accent: 'abs', exercises: [
         { name: 'Crunches · 40', sets: 3 },
@@ -1364,7 +1367,7 @@ function deleteLogEntry(kind, i) {
   renderMetric(kind);
 }
 
-const METRIC_UNIT = { pushups: 'reps', plank: 'sec', row: 'sec' };
+const METRIC_UNIT = { pushups: 'reps', plank: 'sec', row: 'reps' };
 
 function renderMetric(kind) {
   const logs = getLog(kind);
